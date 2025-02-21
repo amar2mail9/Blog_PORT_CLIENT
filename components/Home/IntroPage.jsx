@@ -26,9 +26,9 @@ const IntroPage = () => {
             </p>
 
             <div className="flex md:justify-start justify-center mt-4">
-              <Button className="w-fit md:text-lg text-sm px-8 py-2  rounded-lg bg-pink-500 text-white">
+              <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-pink-500 text-white">
                 Download Resume
-              </Button>
+              </button>
             </div>
           </div>
         </div>

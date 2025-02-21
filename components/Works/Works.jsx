@@ -61,14 +61,14 @@ const Works = () => {
                     gutterBottom
                     variant="h5"
                     component="p"
-                    className="text-pink-600 text-4xl text-center"
+                    className="!text-pink-600 !text-4xl !text-center"
                   >
                     {work.icon}
                   </Typography>
 
                   <Typography
                     variant="body1"
-                    className="text-center font-semibold text-xl text-gray-700"
+                    className="!text-center !font-semibold !text-xl !text-gray-700"
                   >
                     {work.title}
                   </Typography>

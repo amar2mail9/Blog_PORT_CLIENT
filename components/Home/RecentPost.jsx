@@ -79,7 +79,7 @@ const RecentPost = () => {
             </CardActionArea>
             <Button
               variant="contained"
-              className="bg-pink-500 text-white mx-4 mb-4"
+              className="!bg-pink-500 !text-white !mx-4 !mb-4"
             >
               Read More
             </Button>
