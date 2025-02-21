@@ -10,3 +10,13 @@ body{
   font-style: normal;
 
 }
+
+.zoom-image {
+  background-size: cover;
+  background-position: center;
+  transition: transform 1s ease-in-out;
+}
+
+.zoom-image:hover {
+  transform: scale(1.1); /* This will zoom the image */
+}
