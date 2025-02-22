@@ -11,6 +11,10 @@ export default function Document() {
           async
         ></script>
         <meta name="theme-color" content="#000000" />
+        <meta
+          name="google-site-verification"
+          content="R9vPxTZuYFtjcGT7foPsSao88FctCtc9yJjAO60YvLo"
+        />
       </Head>
       <body>
         <Main />
