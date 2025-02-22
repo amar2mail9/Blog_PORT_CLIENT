@@ -20,6 +20,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <script
+        src="https://analytics.ahrefs.com/analytics.js"
+        data-key="bpuEyUGmP9l/DeDO56VmEA"
+        async
+      ></script>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-gray-900`}
       >
