@@ -95,7 +95,7 @@ const RecentPosts = () => {
             {blogData.map((blog, idx) => {
               return (
                 <div key={idx}>
-                  <div className="flex gap-4 shadow-hover hover:bg-slate-200 hover:rounded-lg transition-all ease-in-out duration-500 p-2">
+                  <div className="flex gap-4 shadow-hover hover:text-pink-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
                     <div className="w-[35%] rounded-lg overflow-hidden">
                       <img
                         src={blog.imageThumbnail}
