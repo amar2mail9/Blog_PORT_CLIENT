@@ -29,13 +29,13 @@ const RecentPosts = () => {
           {/* section 1 */}
           <div className="w-[450px] h-[400px] rounded-lg lg:block hidden">
             <Swiper
-              spaceBetween={30}
               centeredSlides={true}
               loop={true}
               autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,
               }}
+              speed={2000}
               modules={[Autoplay]}
               className="mySwiper w-full h-full rounded-lg "
             >
@@ -43,7 +43,7 @@ const RecentPosts = () => {
                 return (
                   <SwiperSlide
                     key={idx}
-                    className="w-full h-full overflow-hidden my-swiper-slide"
+                    className="w-full h-full overflow-hidden my-swiper-slide "
                   >
                     <div className="relative w-full h-full">
                       <img
@@ -70,14 +70,16 @@ const RecentPosts = () => {
                                 </span>
                               </span>
                             </span>
-                            <motion.h1
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 0.5, duration: 1 }}
-                              className="text-2xl line-clamp-2"
+                            <motion.div
+                              initial={{ opacity: 0, y: 100 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.5, duration: 2 }}
+                              viewport={{ once: false }}
                             >
-                              {post.title}
-                            </motion.h1>
+                              <h1 className="text-2xl line-clamp-2">
+                                {post.title}
+                              </h1>
+                            </motion.div>
                           </div>
                         </div>
                       </div>
@@ -93,7 +95,7 @@ const RecentPosts = () => {
             {blogData.map((blog, idx) => {
               return (
                 <div key={idx}>
-                  <div className="flex gap-4 hover:shadow-md hover:bg-slate-200 hover:rounded-lg transition-all ease-in-out duration-500 p-2">
+                  <div className="flex gap-4 shadow-hover hover:bg-slate-200 hover:rounded-lg transition-all ease-in-out duration-500 p-2">
                     <div className="w-[35%] rounded-lg overflow-hidden">
                       <img
                         src={blog.imageThumbnail}

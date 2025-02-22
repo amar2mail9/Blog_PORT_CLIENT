@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://polytechub.vercel.app
+
+# Sitemaps
+Sitemap: https://polytechub.vercel.app/sitemap.xml

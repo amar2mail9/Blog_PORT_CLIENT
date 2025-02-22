@@ -26,3 +26,7 @@ body{
   cursor: pointer;
   transform: scale(1.1);
 }
+
+.shadow-hover:hover{
+  box-shadow: 0 0 5px 0 #12121280;
+}
