@@ -18,7 +18,7 @@ const SwiperBlog = () => {
   return (
     <section className="relative mb-8">
       <Swiper
-        spaceBetween={30}
+        spaceBetween={0}
         centeredSlides={true}
         loop={true}
         autoplay={{
@@ -28,10 +28,11 @@ const SwiperBlog = () => {
         pagination={{
           clickable: true,
         }}
+        speed={2000}
         modules={[Autoplay, Pagination]}
         className="mySwiper w-[100%] md:h-[85vh] h-[50vh]"
       >
-        {blogData.map((post, idx) => {
+        {blogData.slice(0, 4).map((post, idx) => {
           return (
             <SwiperSlide key={idx} className="w-[100%] h-full  ">
               <div className=" relative w-full h-full overflow-hidden cursor-pointer my-swiper-slide">
@@ -88,6 +89,7 @@ const SwiperBlog = () => {
             delay: 2500,
             disableOnInteraction: false,
           }}
+          speed={2000}
           loop={true}
           breakpoints={{
             768: {
@@ -98,7 +100,7 @@ const SwiperBlog = () => {
           modules={[FreeMode, Autoplay]}
           className="mySwiper"
         >
-          {blogData.map((post, idx) => {
+          {blogData.slice(0, 3).map((post, idx) => {
             return (
               <SwiperSlide
                 key={idx}

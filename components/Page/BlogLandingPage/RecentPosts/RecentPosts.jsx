@@ -19,10 +19,10 @@ const RecentPosts = () => {
     <div className="md:grid md:grid-cols-12 grid-cols-1 flex flex-col  gap-8 w-full h-[80vh bg-red-800] items-start">
       <div className="lg:col-span-9 md:col-span-7 flex flex-col gap-8  ">
         <div className="flex items-center lg:flex-row md:flex-col gap-3">
-          <h2 className="md:text-3xl text-xl font-semibold text-gray-700">
+          <h2 className="md:text-3xl sm:text-xl text-lg font-semibold text-gray-700">
             Recent Post
           </h2>
-          <div className="md:w-[300px] w-[200px]    h-[6px] bg-rose-500 rounded-full"></div>
+          <div className="md:w-[300px] sm:w-[200px] w-[100px]    h-[4px] bg-rose-500 rounded-full"></div>
         </div>
 
         <div className="w-full  lg:flex  gap-4  ">
@@ -39,7 +39,7 @@ const RecentPosts = () => {
               modules={[Autoplay]}
               className="mySwiper w-full h-full rounded-lg "
             >
-              {blogData.map((post, idx) => {
+              {blogData.slice(0, 3).map((post, idx) => {
                 return (
                   <SwiperSlide
                     key={idx}
@@ -91,41 +91,57 @@ const RecentPosts = () => {
           </div>
 
           {/* section 2 */}
-          <div>
-            {blogData.map((blog, idx) => {
-              return (
-                <div key={idx}>
-                  <div className="flex gap-4 shadow-hover hover:text-pink-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
-                    <div className="w-[35%] rounded-lg overflow-hidden">
-                      <img
-                        src={blog.imageThumbnail}
-                        alt={blog.title}
-                        className="rounded-lg w-full h-[100px] hover:scale-110 transition-all duration-1000 ease-in-out hover:brightness-50 cursor-pointer object-cover object-center "
-                      />
-                    </div>
-                    <div className="w-[65%] flex flex-col gap-2">
-                      <div className="flex gap-2 ">
-                        <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
-                          {blog.category.length > 14
-                            ? `${blog.category.slice(0, 14)}...`
-                            : blog.category}
-                        </button>
-
-                        <span className="flex items-center">
-                          <FcCalendar className="w-6 h-6 p-1" />
-                          <span className="text-xs text-gray-500">
-                            {blog.publishDate}
-                          </span>
-                        </span>
+          <div className="w-full h-[400px]  scroll-container">
+            <Swiper
+              centeredSlides={true}
+              loop={true}
+              direction="vertical"
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+              }}
+              speed={1000}
+              transition={{ duration: 5 }}
+              modules={[Autoplay]}
+              className="w-full mySwiper h-full"
+              slidesPerView={3}
+              spaceBetween={30}
+            >
+              {blogData.slice(0, 15).map((blog, idx) => {
+                return (
+                  <SwiperSlide key={idx}>
+                    <div className="flex gap-4 shadow-hover hover:text-pink-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
+                      <div className="w-[35%] rounded-lg overflow-hidden">
+                        <img
+                          src={blog.imageThumbnail}
+                          alt={blog.title}
+                          className="rounded-lg w-full h-[100px] hover:scale-110 transition-all duration-1000 ease-in-out hover:brightness-50 cursor-pointer object-cover object-center "
+                        />
                       </div>
-                      {/* title */}
-                      <h2 className="text-sm line-clamp-2">{blog.title}</h2>
+                      <div className="w-[65%] flex flex-col gap-2">
+                        <div className="flex gap-2 ">
+                          <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
+                            {blog.category.length > 14
+                              ? `${blog.category.slice(0, 14)}...`
+                              : blog.category}
+                          </button>
+
+                          <span className="flex items-center">
+                            <FcCalendar className="w-6 h-6 p-1" />
+                            <span className="text-xs text-gray-500">
+                              {blog.publishDate}
+                            </span>
+                          </span>
+                        </div>
+                        {/* title */}
+                        <h2 className="text-sm line-clamp-2">{blog.title}</h2>
+                      </div>
                     </div>
-                  </div>
-                  <hr className="my-4" />
-                </div>
-              );
-            })}
+                    <hr className="my-4" />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
         </div>
       </div>
