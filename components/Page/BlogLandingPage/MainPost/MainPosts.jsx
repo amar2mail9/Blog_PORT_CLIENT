@@ -14,7 +14,7 @@ import { FcCalendar } from "react-icons/fc";
 const MainPosts = () => {
   const [count, setCount] = useState(6);
   return (
-    <section className="flex md:flex lg:flex-row flex-col  gap-6 justify-between lg:px-[5%] md:px-[8%] sm:px-[5%] p-5 bg-gray-900 my-4 text-white ">
+    <section className="flex md:flex lg:flex-row flex-col gap-6 justify-between lg:px-[5%] md:px-[8%] sm:px-[5%] p-5 bg-gray-900 my-4 text-white">
       <div className="lg:w-[75%] w-full">
         <div className="my-4 mb-8">
           <h1 className="lg:text-2xl md:text-xl text-lg">Main Blog</h1>
@@ -24,7 +24,7 @@ const MainPosts = () => {
             return (
               <div key={idx}>
                 <motion.div
-                  className="  rounded-lg  overflow-hidden  hover:shadow-md hover:shadow-gray-700 duration-500 ease-in-out transition-all"
+                  className="rounded-lg overflow-hidden hover:shadow-md hover:shadow-gray-700 duration-500 ease-in-out transition-all"
                   initial={{ opacity: 0, y: 100 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{
@@ -36,7 +36,7 @@ const MainPosts = () => {
                 >
                   <Card
                     sx={{ maxWidth: "100%" }}
-                    className="!bg-gray-900 border !border-gray-800 rounded-lg  !text-white my-swiper-slide"
+                    className="!bg-gray-900 border !border-gray-800 rounded-lg !text-white my-swiper-slide"
                   >
                     <CardActionArea>
                       <CardMedia
@@ -44,7 +44,7 @@ const MainPosts = () => {
                         height="140"
                         image={post.imageThumbnail}
                         alt="green iguana"
-                        className="transition-all ease-in-out duration-1000 hover:brightness-50 "
+                        className="transition-all ease-in-out duration-1000 hover:brightness-50"
                       />
 
                       <CardContent>
@@ -53,7 +53,7 @@ const MainPosts = () => {
                             gutterBottom
                             variant="button"
                             component="div"
-                            className="!text-pink-600 text-[13px] py-1 !bg-gray-800 w-fit  px-4 !rounded-md !capitalize"
+                            className="!text-pink-600 text-[13px] py-1 !bg-gray-800 w-fit px-4 !rounded-md !capitalize"
                           >
                             {post.category.length > 14
                               ? `${post.category.slice(0, 14)}...`
@@ -83,7 +83,7 @@ const MainPosts = () => {
                         <Typography
                           variant="p"
                           sx={{ color: "text.secondary" }}
-                          className=" !line-clamp-3 !text-xs !text-gray-600"
+                          className="!line-clamp-3 !text-xs !text-gray-600"
                         >
                           {post.description}
                         </Typography>
@@ -101,6 +101,7 @@ const MainPosts = () => {
             onClick={() => {
               setCount((prev) => prev + 6);
             }}
+            className="!bg-pink-600 !text-white hover:!bg-pink-700 duration-300"
           >
             View More
           </Button>
