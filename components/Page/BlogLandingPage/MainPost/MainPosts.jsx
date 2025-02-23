@@ -83,7 +83,7 @@ const MainPosts = () => {
                         <Typography
                           variant="p"
                           sx={{ color: "text.secondary" }}
-                          className=" !line-clamp-3 !text-xs text-gray-600"
+                          className=" !line-clamp-3 !text-xs !text-gray-600"
                         >
                           {post.description}
                         </Typography>
