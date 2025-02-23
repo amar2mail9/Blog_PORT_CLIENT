@@ -36,7 +36,7 @@ const MainPosts = () => {
                 >
                   <Card
                     sx={{ maxWidth: "100%" }}
-                    className="!bg-gray-900 border !border-gray-800 rounded-lg  text-white my-swiper-slide"
+                    className="!bg-gray-900 border !border-gray-800 rounded-lg  !text-white my-swiper-slide"
                   >
                     <CardActionArea>
                       <CardMedia
@@ -66,7 +66,7 @@ const MainPosts = () => {
                           >
                             <span className="flex items-center">
                               <FcCalendar className="w-6 h-6 p-1" />
-                              <span className="!text-[10px] text-gray-200">
+                              <span className="!text-[10px] !text-gray-500">
                                 {post.publishDate}
                               </span>
                             </span>
