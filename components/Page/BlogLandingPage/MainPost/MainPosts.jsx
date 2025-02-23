@@ -47,7 +47,7 @@ const MainPosts = () => {
                         className="transition-all ease-in-out duration-1000 hover:brightness-50"
                       />
 
-                      <CardContent>
+                      <CardContent className="!rounded-lg">
                         <div className="flex gap-3 items-center">
                           <Typography
                             gutterBottom
