@@ -42,7 +42,7 @@ const MainPosts = () => {
                       <CardMedia
                         component="img"
                         height="140"
-                        image={post.imageThumbnail}
+                        image={post.featuredImage}
                         alt="green iguana"
                         className="transition-all ease-in-out duration-1000 hover:brightness-50"
                       />

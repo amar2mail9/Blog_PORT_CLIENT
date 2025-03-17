@@ -5,76 +5,86 @@ import { usePathname } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { MenuRounded } from "@mui/icons-material";
 import { Drawer, Modal } from "@mui/material";
+import { blogData } from "@/context/BlogData"; // Import blog data
 
 const Navbar = () => {
-  // hooks
+  // Hooks
   const [open, setOpen] = useState(false);
-
   const [searchOpen, setSearchOpen] = useState(false);
-
+  const [searchTerm, setSearchTerm] = useState(""); // Search state
   const pathname = usePathname();
-  const menu = [
-    {
-      menuName: "home",
-      path: "/",
-    },
-    {
-      menuName: "works",
-      path: "/works",
-    },
 
-    {
-      menuName: "blogs",
-      path: "/blogs",
-    },
-    {
-      menuName: "about",
-      path: "/about-us",
-    },
+  const menu = [
+    { menuName: "home", path: "/" },
+    { menuName: "works", path: "/works" },
+    { menuName: "blogs", path: "/blogs" },
+    { menuName: "about", path: "/about-us" },
   ];
 
-  // method
+  // Toggle Drawer
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
+  // Open & Close Search Modal
   const handleOpen = () => setSearchOpen(true);
   const handleClose = () => setSearchOpen(false);
 
-  // return
+  // Filter blogs based on search term
+  const filteredBlogs = blogData.filter((blog) =>
+    blog.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
       <nav className="w-full sticky top-0 z-50 flex items-center justify-between bg-gray-100 h-16 py-2 shadow-md lg:px-[10%] md:px-[5%] px-[1rem]">
         {/* Logo Section */}
         <div className="w-[180px]">
-          <Link href={"/"}>
-            <img
-              src="./logo.png"
-              alt="polytechub"
-              className="object-cover object-center"
-            />
+          <Link href="/">
+            <img src="/logo.png" alt="polytechub" className="object-cover" />
           </Link>
         </div>
 
-        {/* Search Icon */}
-        <form action="" className="sm:block hidden">
-          <div className="bg-gray-300 h-10 outline-none rounded-md w-[350px] flex justify-between items-center">
+        {/* Search Input for Larger Screens */}
+        <form className="sm:block hidden relative">
+          <div className="bg-gray-300 h-10 rounded-md w-[350px] flex items-center">
             <input
               type="text"
               className="bg-transparent w-full p-2 outline-none text-pink-600 rounded-full placeholder:text-pink-400"
-              placeholder="Search..."
+              placeholder="Search blogs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <button className="w-9 h-9 text-pink-400 flex justify-center items-center">
               <CiSearch className="w-full h-full p-1.5" />
             </button>
           </div>
+
+          {/* Search Results Dropdown */}
+          {searchTerm && (
+            <div className="absolute top-12 left-0 w-full h-96 scroll-container  bg-white shadow-md rounded-md p-2">
+              {filteredBlogs.length > 0 ? (
+                filteredBlogs.map((blog) => (
+                  <Link
+                    key={blog.slug}
+                    href={`/blog/${blog.slug}`}
+                    className="block p-2 hover:bg-gray-200 text-gray-700"
+                    onClick={() => setSearchTerm("")}
+                  >
+                    {blog.title}
+                  </Link>
+                ))
+              ) : (
+                <p className="text-gray-500 p-2">No results found</p>
+              )}
+            </div>
+          )}
         </form>
 
-        {/* Menu */}
+        {/* Navigation Menu */}
         <ul className="hidden gap-10 items-center md:flex">
           {menu.map((menuItem, idx) => {
             const isActive = menuItem.path === pathname;
-
             return (
               <li key={idx}>
                 <Link
@@ -91,8 +101,9 @@ const Navbar = () => {
           })}
         </ul>
 
+        {/* Mobile Icons */}
         <div className="flex items-center gap-3">
-          {/* Search icon */}
+          {/* Search Icon for Mobile */}
           <button
             onClick={handleOpen}
             className="w-10 sm:hidden flex items-center justify-center text-pink-600 h-10 rounded-full p-2"
@@ -100,17 +111,17 @@ const Navbar = () => {
             <CiSearch className="w-full h-full" />
           </button>
 
-          {/* toggle menu */}
+          {/* Mobile Menu Button */}
           <button
-            onClick={toggleDrawer(!open)} // Open/close Drawer
-            className="w-10 md:hidden bg-pink-50 duration-500 flex items-center hover:bg-pink-100 justify-center text-pink-600 shadow shadow-pink-200 h-10 rounded-full p-2"
+            onClick={toggleDrawer(!open)}
+            className="w-10 md:hidden bg-pink-50 hover:bg-pink-100 duration-500 flex items-center justify-center text-pink-600 shadow-pink-200 h-10 rounded-full p-2"
           >
             <MenuRounded className="w-full h-full" />
           </button>
         </div>
       </nav>
 
-      {/* Drawer Menu */}
+      {/* Drawer Menu for Mobile */}
       <Drawer anchor="top" open={open} onClose={toggleDrawer(false)}>
         <div className="w-full bg-[#262626] p-4 flex flex-col items-start gap-3">
           {menu.map((menuItem, idx) => {
@@ -118,7 +129,7 @@ const Navbar = () => {
             return (
               <Link
                 key={idx}
-                onClick={toggleDrawer(false)} // Close the drawer when a menu item is clicked
+                onClick={toggleDrawer(false)}
                 href={menuItem.path}
                 className={`${
                   isActive
@@ -134,38 +145,47 @@ const Navbar = () => {
         </div>
       </Drawer>
 
-      {/* Search Modal */}
-      <Modal
-        open={searchOpen}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        className="bg-[#0a0a0ad8]"
-      >
-        <>
-          <form action="" className="w-full p-4 ">
-            <div className="w-full h-10 bg-gray-200 border-2 border-pink-300 rounded-md flex items-center justify-between">
-              <input
-                type="text"
-                name=""
-                placeholder="Search.. "
-                className="w-full h-full bg-transparent p-2 outline-none rounded-full placeholder:text-pink-500"
-              />
-              <button className="w-10 h-10 p-2 text-pink-400">
-                <CiSearch className="w-full h-full" />
-              </button>
-            </div>
-          </form>
-
-          <div className="px-8 py-3 text-white">
-            <h1>Hello World</h1>
-            <h1>Hello World</h1>
-            <h1>Hello World</h1>
-            <h1>Hello World</h1>
-            <h1>Hello World</h1>
-            <h1>Hello World</h1>
+      {/* Search Modal for Mobile */}
+      <Modal open={searchOpen} onClose={handleClose} className="bg-[#0a0a0ad8]">
+        <div className="w-full p-4">
+          <div className="w-full h-10 bg-gray-200 border-2 border-pink-300 rounded-md flex items-center">
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              className="w-full h-full bg-transparent p-2 outline-none rounded-full placeholder:text-pink-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <button className="w-10 h-10 p-2 text-pink-400">
+              <CiSearch className="w-full h-full" />
+            </button>
           </div>
-        </>
+
+          {/* Search Results in Modal */}
+          <div className="px-2 py-3 text-white w-full    rounded-lg">
+            {searchTerm && (
+              <div className="bg-white p-2 w-full scroll-container h-96 rounded-md">
+                {filteredBlogs.length > 0 ? (
+                  filteredBlogs.map((blog) => (
+                    <Link
+                      key={blog.slug}
+                      href={`/blog/${blog.slug}`}
+                      className="block p-2 hover:bg-gray-200 text-gray-700"
+                      onClick={() => {
+                        setSearchTerm("");
+                        handleClose();
+                      }}
+                    >
+                      {blog.title}
+                    </Link>
+                  ))
+                ) : (
+                  <p className="text-gray-500 p-2">No results found</p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </Modal>
     </>
   );

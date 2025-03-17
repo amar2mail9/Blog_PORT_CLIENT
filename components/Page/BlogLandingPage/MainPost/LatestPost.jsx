@@ -8,6 +8,7 @@ import "swiper/css/free-mode";
 
 import { Autoplay } from "swiper/modules";
 import { FcCalendar } from "react-icons/fc";
+import Link from "next/link";
 const LatestPost = () => {
   return (
     <div className="my-5">
@@ -30,47 +31,52 @@ const LatestPost = () => {
             className="w-full mySwiper h-full "
             slidesPerView={7}
           >
-            {blogData.slice(0, 20).map((post, idx) => {
-              return (
-                <SwiperSlide
-                  key={idx}
-                  className="  mb-3 px-2 rounded-lg  my-swiper-slide overflow-hidden  bg-gray-800 "
-                >
-                  <div className="w-full h-full overflow-hidden rounded-lg">
-                    <div className="w-full h-full flex items-start gap-3">
-                      <div className="w-[30%] h-[100%] py-2">
-                        <img
-                          src={post.imageThumbnail}
-                          alt={post.title}
-                          className="w-full h-full hover:brightness-75 transition-all ease-in-out duration-1000 object-cover object-center rounded-sm"
-                        />
-                      </div>
-
-                      <div className="w-[70%] h-full ">
-                        <div className="flex flex-col gap-3 items-start my-3">
-                          <div className="flex gap-2 items-center">
-                            <button className="px-2 py-1 rounded-full text-[10px] bg-slate-700 text-pink-600 ">
-                              {post.category.length > 12
-                                ? `${post.category.slice(0, 12)}...`
-                                : post.category}
-                            </button>
-                            <span className="flex items-center">
-                              <FcCalendar className="w-6 h-6 p-1" />
-                              <span className="text-[10px] text-gray-200">
-                                {post.publishDate}
-                              </span>
-                            </span>
+            {blogData
+              .slice(-10)
+              .reverse()
+              .map((post, idx) => {
+                return (
+                  <SwiperSlide
+                    key={idx}
+                    className="  mb-3 px-2 rounded-lg  my-swiper-slide overflow-hidden  bg-gray-800 "
+                  >
+                    <Link href={`/blog/${post.slug}`}>
+                      <div className="w-full h-full overflow-hidden rounded-lg">
+                        <div className="w-full h-full flex items-start gap-3">
+                          <div className="w-[30%] h-[100%] py-2">
+                            <img
+                              src={post.featuredImage}
+                              alt={post.title}
+                              className="w-full h-full hover:brightness-75 transition-all ease-in-out duration-1000 object-cover object-center rounded-sm"
+                            />
                           </div>
-                          <h3 className="text-[12px] line-clamp-2  text-gray-400">
-                            {post.title}
-                          </h3>
+
+                          <div className="w-[70%] h-full ">
+                            <div className="flex flex-col gap-3 items-start my-3">
+                              <div className="flex gap-2 items-center">
+                                <button className="px-2 py-1 rounded-full text-[10px] bg-slate-700 text-pink-600 ">
+                                  {post.category.length > 12
+                                    ? `${post.category.slice(0, 12)}...`
+                                    : post.category}
+                                </button>
+                                <span className="flex items-center">
+                                  <FcCalendar className="w-6 h-6 p-1" />
+                                  <span className="text-[10px] text-gray-200">
+                                    {post.publishDate}
+                                  </span>
+                                </span>
+                              </div>
+                              <h3 className="text-[12px] line-clamp-2  text-gray-400">
+                                {post.title}
+                              </h3>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              );
-            })}
+                    </Link>
+                  </SwiperSlide>
+                );
+              })}
           </Swiper>
         </div>
       </div>

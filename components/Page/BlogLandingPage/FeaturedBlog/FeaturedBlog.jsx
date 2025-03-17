@@ -22,6 +22,7 @@ import {
 } from "react-icons/fa";
 
 import { Autoplay } from "swiper/modules";
+import Link from "next/link";
 
 const socialIcon = [
   {
@@ -65,29 +66,31 @@ const FeaturedBlog = () => {
                 modules={[Autoplay]}
                 className="mySwiper w-full h-full rounded-lg bg-white shadow-hover"
               >
-                {blogData.map((post, idex) => (
+                {blogData.slice(7, 13).map((post, idex) => (
                   <SwiperSlide key={idex} className="w-full h-full">
-                    <div className="w-full md:h-[300px] h-[220px]">
-                      <img
-                        src={post.imageThumbnail}
-                        alt={post.title}
-                        className="hover:scale-110 transform-gpu w-full h-full duration-[2s] hover:brightness-50 transition-all object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="flex flex-col items-start gap-4 p-4">
-                      <div className="flex items-center gap-2">
-                        <button className="bg-pink-50 text-sm rounded-md text-pink-500 md:px-6 px-3 py-1 hover:bg-pink-500 hover:text-pink-100 duration-500 ease-in-out transition-all shadow-hover line-clamp-1">
-                          {post.category}
-                        </button>
-                        <span className="flex items-center gap-2 text-sm text-gray-600">
-                          <CalendarMonth /> {post.publishDate}
-                        </span>
+                    <Link href={`/blog/${post.slug}`}>
+                      <div className="w-full md:h-[300px] h-[220px]">
+                        <img
+                          src={post.featuredImage}
+                          alt={post.title}
+                          className="hover:scale-110 transform-gpu w-full h-full duration-[2s] hover:brightness-50 transition-all object-cover"
+                          loading="lazy"
+                        />
                       </div>
-                      <h2 className="md:text-xl lg line-clamp-2 font-semibold">
-                        {post.title}
-                      </h2>
-                    </div>
+                      <div className="flex flex-col items-start gap-4 p-4">
+                        <div className="flex items-center gap-2">
+                          <button className="bg-pink-50 text-sm rounded-md text-pink-500 md:px-6 px-3 py-1 hover:bg-pink-500 hover:text-pink-100 duration-500 ease-in-out transition-all shadow-hover line-clamp-1">
+                            {post.category}
+                          </button>
+                          <span className="flex items-center gap-2 text-sm text-gray-600">
+                            <CalendarMonth /> {post.publishedAt}
+                          </span>
+                        </div>
+                        <h2 className="md:text-xl lg line-clamp-2 font-semibold">
+                          {post.title}
+                        </h2>
+                      </div>
+                    </Link>
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -108,46 +111,48 @@ const FeaturedBlog = () => {
                 640: { slidesPerView: 1 },
               }}
             >
-              {blogData.slice(0, 5).map((post, idx) => (
+              {blogData.slice(5, 9).map((post, idx) => (
                 <SwiperSlide key={idx}>
-                  <motion.div
-                    className="w-full sm:h-60 h-44 my-swiper-slide mb-6 rounded-lg overflow-hidden"
-                    initial={{ opacity: 0, y: 100 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 1.5,
-                      ease: "easeOut",
-                      scale: { type: "spring", bounce: 0.5, stiffness: 100 },
-                    }}
-                    viewport={{ once: false }}
-                  >
-                    <div className="w-full rounded-lg mx-auto relative h-full object-fit">
-                      <img
-                        src={post.imageThumbnail}
-                        alt={post.title}
-                        className="w-full h-full object-cover ease-in-out duration-1000 object-center rounded-lg brightness-50 absolute"
-                        loading="lazy"
-                      />
-                      <div className="absolute bottom-0 p-4">
-                        <div className="flex gap-2">
-                          <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
-                            {post.category.length > 14
-                              ? `${post.category.slice(0, 14)}...`
-                              : post.category}
-                          </button>
-                          <span className="flex items-center">
-                            <FcCalendar className="w-6 h-6 p-1" />
-                            <span className="text-xs text-gray-200">
-                              {post.publishDate}
+                  <Link href={`/blog/${post.slug}`}>
+                    <motion.div
+                      className="w-full sm:h-60 h-44 my-swiper-slide mb-6 rounded-lg overflow-hidden"
+                      initial={{ opacity: 0, y: 100 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 1.5,
+                        ease: "easeOut",
+                        scale: { type: "spring", bounce: 0.5, stiffness: 100 },
+                      }}
+                      viewport={{ once: false }}
+                    >
+                      <div className="w-full rounded-lg mx-auto relative h-full object-fit">
+                        <img
+                          src={post.featuredImage}
+                          alt={post.title}
+                          className="w-full h-full object-cover ease-in-out duration-1000 object-center rounded-lg brightness-50 absolute"
+                          loading="lazy"
+                        />
+                        <div className="absolute bottom-0 p-4">
+                          <div className="flex gap-2">
+                            <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
+                              {post.category.length > 14
+                                ? `${post.category.slice(0, 14)}...`
+                                : post.category}
+                            </button>
+                            <span className="flex items-center">
+                              <FcCalendar className="w-6 h-6 p-1" />
+                              <span className="text-xs text-gray-200">
+                                {post.publishDate}
+                              </span>
                             </span>
-                          </span>
+                          </div>
+                          <h2 className="md:text-2xl sm:text-xl line-clamp-2 text-lg text-white">
+                            {post.title}
+                          </h2>
                         </div>
-                        <h2 className="md:text-2xl sm:text-xl line-clamp-2 text-lg text-white">
-                          {post.title}
-                        </h2>
                       </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  </Link>
                 </SwiperSlide>
               ))}
             </Swiper>

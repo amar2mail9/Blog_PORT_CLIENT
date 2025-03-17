@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
+import Link from "next/link";
+import { FaDownload } from "react-icons/fa";
 
 const IntroPage = () => {
   return (
@@ -26,9 +28,11 @@ const IntroPage = () => {
             </p>
 
             <div className="flex md:justify-start justify-center mt-4">
-              <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-pink-500 text-white">
-                Download Resume
-              </button>
+              <a href={"/Resume.pdf"} download>
+                <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-pink-500 text-white flex items-center  gap-3">
+                  Download Resume <FaDownload />
+                </button>
+              </a>
             </div>
           </div>
         </div>
@@ -39,8 +43,8 @@ const IntroPage = () => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
-              duration: 0.5,
-              scale: { type: "spring", visualDuration: 0.6, bounce: 0.5 },
+              duration: 2,
+              scale: { type: "tween", visualDuration: 1, bounce: 0.5 },
             }}
           >
             <div className="lg:w-[400px]   aspect-square md:w-[350px] w-[300px]  rounded-full">
