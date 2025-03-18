@@ -20,9 +20,16 @@ import { Favorite, Visibility } from "@mui/icons-material";
 const RecentPost = () => {
   return (
     <section className="w-full py-8 bg-cyan-50 lg:px-[10%] md:px-[7%] sm:px-[5%] px-10">
-      <div className="flex items-baseline gap-2">
-        <h2 className="text-xl font-semibold text-gray-800">Recent Posts</h2>
-        <div className="w-4/12 h-1 bg-pink-500 rounded-full "></div>
+      <div className="flex items-center justify-between ">
+        <div className="flex items-baseline gap-2">
+          <h2 className="text-xl font-semibold text-gray-800">Recent Posts</h2>
+          <div className="w-4/12 h-1 bg-pink-500 rounded-full "></div>
+        </div>
+        <Link href={`/all-blogs`}>
+          <Button className="!bg-pink-50 !text-pink-500  ">
+            <strong>View More</strong>
+          </Button>
+        </Link>
       </div>
 
       <section className="flex flex-wrap gap-10">
