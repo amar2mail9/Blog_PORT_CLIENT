@@ -25,15 +25,15 @@ const RecentPost = () => {
         <div className="w-4/12 h-1 bg-pink-500 rounded-full "></div>
       </div>
 
-      <section className="flex flex-wrap gap-10">
+      <section className="flex flex-wrap gap-6">
         {blogData
-          .slice(-3)
+          .slice(-4)
           .reverse()
           .map((post, idx) => {
             return (
               <motion.div
                 key={idx}
-                className="w-[360px]  bg-white shadow-md rounded-md my-swiper-slide"
+                className="w-[280px]  bg-white shadow-md rounded-md my-swiper-slide"
               >
                 {/* top section */}{" "}
                 <section className="flex items-center justify-between px-4 py-2 bg-gray-100">
@@ -61,7 +61,7 @@ const RecentPost = () => {
                     />
                   </div>
                   {/* content section */}
-                  <section>
+                  <section className="p-2">
                     <h2 className="text-[1rem] line-clamp-2">{post.title}</h2>
                     <p className="text-gray-500 line-clamp-3 text-[0.8rem]">
                       {post.expertContent}
