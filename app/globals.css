@@ -1,43 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-  font-family: "Poppins", serif;
+/* Global Font */
+body {
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
-
 }
 
+/* Zoom Effect on Hover */
 .zoom-image {
- 
-  transition: transform 2s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
-
-.myt-swiper-slide:hover >div >div> img{
-  transform: scale(1.1); 
-}
-.zoom-image:hover{
-  cursor: pointer;
-}
-.my-swiper-slide:hover img {
-  cursor: pointer;
+.zoom-image:hover {
   transform: scale(1.1);
+  cursor: pointer;
 }
 
-.shadow-hover:hover{
-  box-shadow: 0 0 5px 0 #12121280;
+/* Hover Shadow Effect */
+.shadow-hover:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+/* Ensure Smooth Overflow Handling */
+.overflow-hidden {
+  overflow: hidden;
+}
 
+/* Swiper Slide Image Zoom Effect */
+.myt-swiper-slide:hover img,
+.my-swiper-slide:hover img {
+  transform: scale(1.1);
+  cursor: pointer;
+  filter: brightness(0.6);
+}
+
+/* Scrollbar Customization */
 .scroll-container {
   overflow-y: scroll; /* Enables vertical scrolling */
   scrollbar-width: none; /* Hides the scrollbar in Firefox */
   -ms-overflow-style: none; /* Hides the scrollbar in IE/Edge */
 }
-
 .scroll-container::-webkit-scrollbar {
-  display: none; /* Hides the scrollbar in WebKit-based browsers (Chrome, Safari, etc.) */
+  display: none; /* Hides the scrollbar in WebKit-based browsers */
 }

@@ -11,6 +11,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import { Button } from "@mui/material";
 import { FcCalendar } from "react-icons/fc";
 import Link from "next/link";
+import { agoTime } from "@/context/TimeFormate";
 
 const MainPosts = () => {
   const [count, setCount] = useState(6);
@@ -69,7 +70,7 @@ const MainPosts = () => {
                               <span className="flex items-center">
                                 <FcCalendar className="w-6 h-6 p-1" />
                                 <span className="!text-[10px] !text-gray-500">
-                                  {post.publishDate}
+                                  {agoTime(post.publishedAt)}
                                 </span>
                               </span>
                             </Typography>

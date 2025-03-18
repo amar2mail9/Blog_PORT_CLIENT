@@ -30,7 +30,7 @@ export const blogData = [
     author: { id: "65f2b3a7d4e3b9c8f1a4b7d2", name: "John Doe" },
     featuredImage:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSikYb-FZgJ6RCVngcFloIlNstvQWwFJTC8w&s",
-    publishedAt: "2025-03-18T10:00:00Z",
+    publishedAt: "2025-01-18T10:00:00Z",
     updatedAt: "2025-03-18T11:00:00Z",
     status: "published",
     views: 1300,
@@ -125,7 +125,7 @@ export const blogData = [
     author: { id: "65f2b3a7d4e3b9c8f1a4b7d2", name: "John Doe" },
     featuredImage:
       "https://cdn.hashnode.com/res/hashnode/image/upload/v1673516184719/42ba3fbe-c592-4c63-ba76-5f874d5e57a4.png",
-    publishedAt: "2025-03-20T08:00:00Z",
+    publishedAt: "2025-03-10T08:00:00Z",
     updatedAt: "2025-03-20T09:30:00Z",
     status: "published",
     views: 1200,
@@ -144,8 +144,8 @@ export const blogData = [
     author: { id: "65f2c4a8b9d1e5f2b6e7d3a9", name: "Alice Johnson" },
     featuredImage:
       "https://media2.dev.to/dynamic/image/width=1280,height=720,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F212kaxcr0jk7j1tg79uo.png",
-    publishedAt: "2025-03-19T07:00:00Z",
-    updatedAt: "2025-03-19T08:15:00Z",
+    publishedAt: "2025-03-10T08:00:00Z",
+    updatedAt: "2025-01-19T08:15:00Z",
     status: "published",
     views: 1100,
     likes: 180,

@@ -6,6 +6,7 @@ import { CiSearch } from "react-icons/ci";
 import { MenuRounded } from "@mui/icons-material";
 import { Drawer, Modal } from "@mui/material";
 import { blogData } from "@/context/BlogData"; // Import blog data
+import LoginPage from "../auth/LoginPage";
 
 const Navbar = () => {
   // Hooks
@@ -34,6 +35,16 @@ const Navbar = () => {
   const filteredBlogs = blogData.filter((blog) =>
     blog.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const blackList = pathname === "/admin";
+
+  if (blackList) {
+    return (
+      <div className="w-full h-screen">
+        <LoginPage />
+      </div>
+    );
+  }
 
   return (
     <>

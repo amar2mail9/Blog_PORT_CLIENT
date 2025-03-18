@@ -35,7 +35,10 @@ const FeaturedWork = () => {
   ]);
   return (
     <section className="w-full bg-white lg:px-[10%] md:px-[7%] sm:px-[5%] px-10 py-8 ">
-      <h2 className="mb-7 text-gray-700 text-2xl font-[500]">Featured Works</h2>
+      <div className="flex items-baseline gap-3 bg-gray-100 p-3 rounded-md">
+        <h2 className=" text-gray-700 text-2xl font-[500]">Featured Works</h2>
+        <div className="w-3/12 h-1 bg-pink-500 rounded-full"></div>
+      </div>
 
       <div className="mt-6 flex flex-col gap-8">
         {work.map((item, idx) => {
@@ -43,7 +46,7 @@ const FeaturedWork = () => {
             <div key={idx}>
               {/* large screen */}
               <motion.div
-                className=" md:block hidden"
+                className=" md:block hidden my-swiper-slide hover:cursor-pointer"
                 initial={{ opacity: 0, y: 100 }}
                 whileInView={{
                   opacity: 1,
@@ -58,11 +61,11 @@ const FeaturedWork = () => {
               >
                 <div className="flex gap-8">
                   <div className="w-[30%]">
-                    <div className="w-full h-60 ">
+                    <div className="w-full h-60 rounded-lg  overflow-hidden ">
                       <img
                         src={item.thumbnail}
-                        alt=""
-                        className="w-full  h-full rounded-md object-cover object-center"
+                        alt={item.title}
+                        className="w-full h-full object-cover object-center brightness-50 zoom-image"
                       />
                     </div>
                   </div>

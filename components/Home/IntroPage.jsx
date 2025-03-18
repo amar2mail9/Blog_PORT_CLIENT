@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@mui/material";
-import Link from "next/link";
+
 import { FaDownload } from "react-icons/fa";
 
 const IntroPage = () => {

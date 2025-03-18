@@ -15,6 +15,7 @@ import "swiper/css/free-mode";
 import { Autoplay } from "swiper/modules";
 import { categories } from "@/context/Category";
 import Link from "next/link";
+import { agoTime } from "@/context/TimeFormate";
 const RecentPosts = () => {
   return (
     <div className="md:grid md:grid-cols-12 grid-cols-1 flex flex-col  gap-8 w-full h-[80vh bg-red-800] items-start">
@@ -68,7 +69,7 @@ const RecentPosts = () => {
                                 <span className="flex items-center">
                                   <FcCalendar className="w-6 h-6 p-1" />
                                   <span className="text-xs text-gray-300">
-                                    {post.publishDate}
+                                    {agoTime(post.publishedAt)}
                                   </span>
                                 </span>
                               </span>
@@ -133,7 +134,7 @@ const RecentPosts = () => {
                             <span className="flex items-center">
                               <FcCalendar className="w-6 h-6 p-1" />
                               <span className="text-xs text-gray-500">
-                                {blog.publishDate}
+                                {agoTime(blog.publishedAt)}
                               </span>
                             </span>
                           </div>

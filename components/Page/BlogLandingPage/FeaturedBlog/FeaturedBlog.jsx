@@ -23,6 +23,7 @@ import {
 
 import { Autoplay } from "swiper/modules";
 import Link from "next/link";
+import { agoTime } from "@/context/TimeFormate";
 
 const socialIcon = [
   {
@@ -73,8 +74,8 @@ const FeaturedBlog = () => {
                         <img
                           src={post.featuredImage}
                           alt={post.title}
-                          className="hover:scale-110 transform-gpu w-full h-full duration-[2s] hover:brightness-50 transition-all object-cover"
                           loading="lazy"
+                          className="hover:scale-110 transform-gpu w-full h-full duration-[2s] hover:brightness-50 transition-all object-cover"
                         />
                       </div>
                       <div className="flex flex-col items-start gap-4 p-4">
@@ -83,7 +84,7 @@ const FeaturedBlog = () => {
                             {post.category}
                           </button>
                           <span className="flex items-center gap-2 text-sm text-gray-600">
-                            <CalendarMonth /> {post.publishedAt}
+                            <CalendarMonth /> {agoTime(post.publishedAt)}
                           </span>
                         </div>
                         <h2 className="md:text-xl lg line-clamp-2 font-semibold">
@@ -142,7 +143,7 @@ const FeaturedBlog = () => {
                             <span className="flex items-center">
                               <FcCalendar className="w-6 h-6 p-1" />
                               <span className="text-xs text-gray-200">
-                                {post.publishDate}
+                                {agoTime(post.publishedAt)}
                               </span>
                             </span>
                           </div>

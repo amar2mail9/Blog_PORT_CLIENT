@@ -15,6 +15,7 @@ import { CalendarMonth } from "@mui/icons-material";
 import { blogData } from "@/context/BlogData";
 
 import Link from "next/link";
+import { agoTime } from "@/context/TimeFormate";
 
 const SwiperBlog = () => {
   return (
@@ -53,7 +54,7 @@ const SwiperBlog = () => {
                               {post.category}
                             </button>
                             <span className="text-gray-300 md:text-xl text-xs ">
-                              <CalendarMonth /> {post.publishedAt}
+                              <CalendarMonth /> {agoTime(post.publishedAt)}
                             </span>
                           </div>
                           <div>
@@ -126,7 +127,7 @@ const SwiperBlog = () => {
                     {/* section 2 */}
                     <div className="w-full">
                       <span className="text-gray-500 ">
-                        <CalendarMonth /> {post.publishDate}
+                        <CalendarMonth /> {agoTime(post.publishedAt)}
                       </span>
                       <h2 className="text-[16px] text-gray-900 font-semibold ">
                         {post.title}
