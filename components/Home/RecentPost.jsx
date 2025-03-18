@@ -25,7 +25,7 @@ const RecentPost = () => {
         <div className="w-4/12 h-1 bg-pink-500 rounded-full "></div>
       </div>
 
-      <section className="flex flex-wrap gap-6">
+      <section className="flex flex-wrap gap-10">
         {blogData
           .slice(-4)
           .reverse()
@@ -33,7 +33,7 @@ const RecentPost = () => {
             return (
               <motion.div
                 key={idx}
-                className="w-[280px]  bg-white shadow-md rounded-md my-swiper-slide"
+                className="w-[350px]  mt-6 bg-white shadow-md rounded-md my-swiper-slide"
               >
                 {/* top section */}{" "}
                 <section className="flex items-center justify-between px-4 py-2 bg-gray-100">
