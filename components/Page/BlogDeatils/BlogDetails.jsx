@@ -11,11 +11,11 @@ const BlogDetails = () => {
 
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
-      <h1 className="text-3xl font-semibold text-pink-500">{blog.title}</h1>
+      <h1 className="text-3xl font-semibold text-pink-500">{blog?.title}</h1>
       <div className="w-full h-fit rounded-lg shadow-xl  overflow-hidden ">
         <img
           src={blog.featuredImage}
-          alt={blog.title}
+          alt={blog?.title}
           className="w-full h-full object-cover object-center zoom-image"
         />
       </div>
