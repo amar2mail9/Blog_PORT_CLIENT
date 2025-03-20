@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
+import Layout from "@/components/Layout/Layout";
 
 // Use Inter or Poppins if Geist is not available in Google Fonts
 const inter = Inter({
@@ -30,9 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.variable} ${poppins.variable} antialiased text-gray-900`}
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
