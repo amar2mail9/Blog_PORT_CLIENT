@@ -69,7 +69,7 @@ const MainPosts = () => {
                       </p>
                     </div>
                   </div>
-                  <span className="bg-pink-50 border border-pink-500 text-pink-500 rounded-md px-4 py-1">
+                  <span className="bg-pink-50 border line-clamp-1 border-pink-500 text-pink-500 rounded-md px-4 py-1">
                     {post.category}
                   </span>
                 </section>
