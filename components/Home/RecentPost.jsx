@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
 import { blogData } from "@/context/BlogData";
@@ -8,7 +8,7 @@ import Link from "next/link";
 import { extractDate } from "@/context/TimeFormate";
 import { FaUserCircle } from "react-icons/fa";
 import { Favorite, Visibility } from "@mui/icons-material";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { VCFormatter } from "@/context/ViewAndCommentsForamter";
 
 const RecentPost = () => {
   const cardVariants = {
@@ -23,7 +23,7 @@ const RecentPost = () => {
     },
     hover: {
       scale: 1.03,
-      boxShadow: "0 8px 15px rgba(0, 0, 0, 0.2)",
+      boxShadow: "0 8px  15px rgba(0, 0, 0, 0.3)",
       transition: { duration: 0.3 },
     },
     tap: { scale: 0.95 },
@@ -72,9 +72,6 @@ const RecentPost = () => {
                     </p>
                   </div>
                 </div>
-                <div className="relative">
-                  <BsThreeDotsVertical className="w-6 h-6 text-gray-500 cursor-pointer" />
-                </div>
               </section>
 
               <Link href={`/blog/${post.slug}`}>
@@ -85,46 +82,46 @@ const RecentPost = () => {
                     alt={post.title}
                     className="w-full h-full object-cover object-center transition-transform duration-300 transform hover:scale-105"
                   />
-                </div>
+                </div>{" "}
+              </Link>
 
-                {/* Content Section */}
-                <section className="p-4">
-                  <h2 className="text-xl font-semibold mb-2 line-clamp-2">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {post.expertContent}
-                  </p>
+              {/* Content Section */}
+              <section className="p-4">
+                <h2 className="text-xl font-semibold mb-2 line-clamp-2">
+                  {post.title}
+                </h2>
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                  {post.expertContent}
+                </p>
+
+                <section>
+                  <Link
+                    href={`/post/${post.slug}`}
+                    className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
+                  >
+                    Read More
+                  </Link>
+                </section>
+
+                {/* Icons Section */}
+                <section className=" mt-2  flex items-center justify-between text-sm text-gray-500">
+                  {/* View and Comments */}
+                  <section className="flex gap-4 items-center">
+                    <span className="flex items-center gap-1">
+                      <Visibility className="text-green-500" />
+                      {VCFormatter(post.views)}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <CommentIcon className="text-pink-600" />
+                      {VCFormatter(post.comments.length)}
+                    </span>
+                  </section>
 
                   <section>
-                    <Link
-                      href={`/post/${post.slug}`}
-                      className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
-                    >
-                      Read More
-                    </Link>
-                  </section>
-
-                  {/* Icons Section */}
-                  <section className=" mt-2 flex items-center justify-between text-sm text-gray-500">
-                    {/* View and Comments */}
-                    <section className="flex gap-4 items-center">
-                      <span className="flex items-center gap-1">
-                        <Visibility className="text-green-500" />
-                        {post.views}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <CommentIcon className="text-pink-600" />
-                        {post.comments.length}
-                      </span>
-                    </section>
-
-                    <section>
-                      <Favorite className="text-red-500 cursor-pointer hover:text-red-600 transition-colors duration-200" />
-                    </section>
+                    <Favorite className="text-red-500 cursor-pointer hover:text-red-600 transition-colors duration-200" />
                   </section>
                 </section>
-              </Link>
+              </section>
             </motion.div>
           ))}
       </section>
