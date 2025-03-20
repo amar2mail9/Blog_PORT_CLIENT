@@ -19,7 +19,7 @@ const LoginPage = () => {
       </div>
 
       {/* Login Box */}
-      <div className="w-[450px] border-purple-500/40 rounded-lg p-6 shadow-xl border-2 bg-white">
+      <div className="sm:w-[450px] w-[90%] mx-auto border-purple-500/40 rounded-lg p-6 shadow-xl border-2 bg-white">
         {/* Top Section */}
         <h2 className="text-[1.6rem] font-bold text-gray-800 text-center">
           Sign in to your account
