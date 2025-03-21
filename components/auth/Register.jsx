@@ -1,173 +1,116 @@
 "use client";
-import { Button } from "@mui/material";
-import Link from "next/link";
-import Image from "next/image";
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import {
+  MdPerson,
+  MdEmail,
+  MdLock,
+  MdPhone,
+  MdAccountCircle,
+  MdVisibility,
+  MdVisibilityOff,
+} from "react-icons/md";
 
-const Register = () => {
+export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    username: "",
-    contact: "",
-    email: "",
-    password: "",
-  });
-
-  const handlePasswordShow = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
 
   return (
-    <section className="w-full h-screen flex items-center justify-center flex-col bg-gradient-to-br from-indigo-100 to-purple-200 px-4">
-      {/* Logo Section */}
-      <div className="flex w-fit my-4 justify-center">
-        <Image src="/logo.png" alt="Logo" width={160} height={160} />
-      </div>
+    <div className="relative w-full h-screen">
+      {/* Background Image */}
+      <img
+        src="https://img.freepik.com/free-vector/abstract-secure-technology-background_23-2148357087.jpg?t=st=1742529893~exp=1742533493~hmac=ccf37163f50c46bd637723591a395f8f7be332f994a2c321b45337cd72ecfdf4&w=996"
+        alt="background"
+        loading="lazy"
+        className="w-full h-full object-cover object-center absolute top-0 left-0"
+      />
 
-      {/* Register Box */}
-      <div className="sm:w-[420px] w-full max-w-[95%] mx-auto border-purple-500/40 rounded-lg p-6 shadow-xl border-2 bg-white">
-        {/* Title */}
-        <h2 className="text-[1.8rem] font-bold text-gray-800 text-center">
-          Create an Account
-        </h2>
+      {/* Registration Box */}
+      <div className="fixed w-full h-full flex items-center justify-center">
+        <div className="bg-white/10 backdrop-blur-lg w-[400px] p-6 border border-white/20 rounded-lg shadow-xl shadow-black/40 text-white">
+          {/* Title */}
+          <h2 className="text-center text-2xl font-semibold mb-6">
+            Create an Account
+          </h2>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-6">
-          {/* Full Name */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Full Name</label>
-            <input
-              type="text"
-              name="fullName"
-              placeholder="John Doe"
-              className="input-style"
-              value={formData.fullName}
-              onChange={handleChange}
-            />
-          </div>
+          {/* Form */}
+          <form className="flex flex-col gap-4">
+            {/* Input Fields */}
+            {[
+              {
+                placeholder: "Full Name",
+                type: "text",
+                id: "fullname",
+                icon: <MdPerson />,
+              },
+              {
+                placeholder: "Username",
+                type: "text",
+                id: "username",
+                icon: <MdAccountCircle />,
+              },
+              {
+                placeholder: "Email Address",
+                type: "email",
+                id: "email",
+                icon: <MdEmail />,
+              },
+              {
+                placeholder: "Phone Number",
+                type: "text",
+                id: "number",
+                icon: <MdPhone />,
+              },
+            ].map(({ placeholder, type, id, icon }) => (
+              <div key={id} className="relative w-full">
+                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white text-lg">
+                  {icon}
+                </span>
+                <input
+                  id={id}
+                  type={type}
+                  placeholder={placeholder}
+                  className="border border-white/20 rounded-lg p-3 pl-10 bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 transition w-full placeholder-white/60"
+                />
+              </div>
+            ))}
 
-          {/* Username */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="johndoe123"
-              className="input-style"
-              value={formData.username}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Contact Number */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Contact Number</label>
-            <input
-              type="tel"
-              name="contact"
-              placeholder="9876543210"
-              className="input-style"
-              value={formData.contact}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Email */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="example@gmail.com"
-              className="input-style"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Password */}
-          <div className="flex flex-col">
-            <label className="text-gray-700 font-medium">Password</label>
+            {/* Password Field with Toggle */}
             <div className="relative w-full">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white text-lg">
+                <MdLock />
+              </span>
               <input
+                id="password"
                 type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="••••••••"
-                className="input-style w-full"
-                value={formData.password}
-                onChange={handleChange}
+                placeholder="Password"
+                className="border border-white/20 rounded-lg p-3 pl-10 pr-10 bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 transition w-full placeholder-white/60"
               />
               <button
                 type="button"
-                onClick={handlePasswordShow}
-                className="absolute top-[12px] right-4 text-gray-500 hover:text-purple-600 transition"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white hover:text-purple-400 transition"
               >
-                {showPassword ? (
-                  <FaEye className="text-[22px]" />
-                ) : (
-                  <FaEyeSlash className="text-[22px]" />
-                )}
+                {showPassword ? <MdVisibility /> : <MdVisibilityOff />}
               </button>
             </div>
-          </div>
 
-          {/* Register Button */}
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{
-              backgroundColor: "#7C3AED",
-              "&:hover": { backgroundColor: "#6D28D9" },
-              py: 1.5,
-              fontWeight: "bold",
-            }}
-          >
-            Register
-          </Button>
-        </form>
+            {/* Register Button */}
+            <button className="bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium transition-all shadow-md shadow-purple-900/50">
+              Register
+            </button>
+          </form>
 
-        {/* Sign-In Link */}
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-700">
+          {/* Sign-in Link */}
+          <div className="text-center text-sm text-white mt-4">
             Already have an account?{" "}
-            <Link href="/techpoly-admin">
-              <strong className="text-purple-600 hover:underline">
-                Sign in
-              </strong>
-            </Link>
-          </p>
+            <a
+              href="/techpoly-admin"
+              className="text-purple-400 hover:underline"
+            >
+              Sign in
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* Styles for input */}
-      <style jsx>{`
-        .input-style {
-          padding: 10px 12px;
-          background-color: #f3f4f6;
-          border: 1px solid #a78bfa;
-          border-radius: 8px;
-          outline: none;
-          transition: 0.3s;
-        }
-        .input-style:focus {
-          border-color: #7c3aed;
-          box-shadow: 0px 0px 8px rgba(124, 58, 237, 0.2);
-        }
-      `}</style>
-    </section>
+    </div>
   );
-};
-
-export default Register;
+}
