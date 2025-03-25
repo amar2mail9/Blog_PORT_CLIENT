@@ -1,6 +1,7 @@
 "use client";
 import { registerRoute } from "@/context/apiRoutes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import {
@@ -25,6 +26,8 @@ export default function Register() {
   const [role, setRole] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [btnDisable, setBtnDisable] = useState(true);
+
+  const route = useRouter();
 
   const onSubmit = async (e) => {
     setIsLoading(true);
@@ -57,6 +60,8 @@ export default function Register() {
       setPhone("");
       setPassword("");
       setIsLoading(false);
+
+      route.push("/techpoly-admin");
     } catch (error) {
       toast.error(error.message);
       setIsLoading(false);

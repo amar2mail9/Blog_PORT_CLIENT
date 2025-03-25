@@ -1,16 +1,47 @@
 "use client";
+import { loginInRoute } from "@/context/apiRoutes";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MdAccountCircle,
   MdLock,
   MdVisibility,
   MdVisibilityOff,
 } from "react-icons/md";
+import { toast } from "react-toastify";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [usernameOrEmail, setUsernameOrEmail] = useState("");
+  const [btnDisable, setBtnDisable] = useState(true);
 
+  const loginUser = async (e) => {
+    const res = await fetch(`${loginInRoute}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: usernameOrEmail,
+        password,
+      }),
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      toast.error(`${data.err || data.error || data.message}`);
+    } else {
+      const data = await res.json();
+      toast.success(`${data.err || data.error || data.message}`);
+    }
+  };
+
+  useEffect(() => {
+    if (usernameOrEmail.length > 8 && password.length > 7) {
+      setBtnDisable(false);
+    }
+  }, [usernameOrEmail, password]);
   return (
     <div className="relative w-full h-screen">
       {/* Background Image */}
@@ -28,15 +59,18 @@ export default function Login() {
           <h2 className="text-center text-2xl font-semibold mb-6">Login</h2>
 
           {/* Form */}
-          <form className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             {/* Username or Email Field */}
             <div className="relative w-full">
               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white text-lg">
                 <MdAccountCircle />
               </span>
               <input
+                onChange={(e) => setUsernameOrEmail(e.target.value)}
+                value={usernameOrEmail}
                 id="emailUsername"
                 type="text"
+                name="email"
                 placeholder="Username or Email"
                 className="border border-white/20 rounded-lg p-3 pl-10 bg-white/10 focus:outline-none focus:ring-2 focus:ring-purple-500 transition w-full placeholder-white/60"
                 required
@@ -49,6 +83,11 @@ export default function Login() {
                 <MdLock />
               </span>
               <input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                name="password"
+                value={password}
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
@@ -66,12 +105,16 @@ export default function Login() {
 
             {/* Login Button */}
             <button
-              type="submit"
-              className="bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium transition-all shadow-md shadow-purple-900/50"
+              disabled={btnDisable}
+              onClick={loginUser}
+              type="button"
+              className={`bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-medium transition-all shadow-md shadow-purple-900/50 ${
+                btnDisable ? "opacity-40" : "opacity-100"
+              }`}
             >
               Login
             </button>
-          </form>
+          </div>
 
           {/* Forgot Password & Sign-up Link */}
           <div className="text-center text-sm text-white mt-4">

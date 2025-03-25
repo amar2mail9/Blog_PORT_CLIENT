@@ -62,7 +62,7 @@ const Navbar = () => {
 
           {/* Search Results Dropdown */}
           {searchTerm && (
-            <div className="absolute top-12 left-0 w-full h-96 scroll-container  bg-white shadow-md rounded-md p-2">
+            <div className="absolute top-12 left-0 w-full   h-96 scroll-container  bg-white shadow-md rounded-md p-2">
               {filteredBlogs.length > 0 ? (
                 filteredBlogs.map((blog) => (
                   <Link
