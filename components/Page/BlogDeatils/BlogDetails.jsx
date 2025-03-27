@@ -1,5 +1,7 @@
 "use client";
 
+import AddComments from "@/components/comments/AddComments";
+import AllComments from "@/components/comments/Allcomments";
 import { blogData } from "@/context/BlogData";
 import { useParams } from "next/navigation";
 
@@ -7,7 +9,6 @@ const BlogDetails = () => {
   const { slug } = useParams();
 
   const blog = blogData.find((b) => b.slug === slug);
-  console.log(blog);
 
   return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
@@ -22,6 +23,10 @@ const BlogDetails = () => {
       {<div dangerouslySetInnerHTML={{ __html: blog.content }} /> || (
         <p>{blog.content}</p>
       )}
+
+      <AddComments />
+
+      <AllComments />
     </div>
   );
 };

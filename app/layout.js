@@ -1,8 +1,6 @@
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
 import Layout from "@/components/Layout/Layout";
 import { ToastContainer } from "react-toastify";
 
