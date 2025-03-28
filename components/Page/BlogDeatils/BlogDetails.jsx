@@ -1,7 +1,8 @@
 "use client";
 
 import AddComments from "@/components/comments/AddComments";
-import AllComments from "@/components/comments/Allcomments";
+import ShowComments from "@/components/comments/ShowComments";
+
 import { blogData } from "@/context/BlogData";
 import { useParams } from "next/navigation";
 
@@ -26,7 +27,7 @@ const BlogDetails = () => {
 
       <AddComments />
 
-      <AllComments />
+      <ShowComments />
     </div>
   );
 };
