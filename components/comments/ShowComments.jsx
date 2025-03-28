@@ -1,5 +1,4 @@
-import React from "react";
-("use client");
+"use client";
 import { commentsApi } from "@/context/CommentsApi";
 import React, { useEffect } from "react";
 import { AccountCircle } from "@mui/icons-material";
