@@ -32,11 +32,13 @@ const RecentPost = () => {
   return (
     <section className="w-full py-12 bg-gray-100 lg:px-[10%] md:px-[7%] sm:px-[5%] px-4">
       <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-3 w-[85%]">
-          <h2 className="text-3xl font-semibold text-gray-800">Recent Posts</h2>
+        <div className="flex items-center gap-3 w-[70%] ">
+          <h2 className="md:text-3xl text-xl  font-semibold text-gray-800">
+            Recent Posts
+          </h2>
           <div className="w-3/12 h-1 bg-pink-500 rounded-full"></div>
         </div>
-        <Link href={`/all-blogs`}>
+        <Link href={`/all-blogs`} className="w-[30%] flex justify-end">
           <Button variant="outlined" color="primary">
             View More
           </Button>
@@ -96,7 +98,7 @@ const RecentPost = () => {
 
                 <section>
                   <Link
-                    href={`/post/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
                   >
                     Read More

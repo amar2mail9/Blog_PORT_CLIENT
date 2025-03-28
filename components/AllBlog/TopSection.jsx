@@ -11,7 +11,7 @@ const TopSection = () => {
         <select
           name=""
           id=""
-          className="text-white bg-gray-800 lg:w-3/12 md:w-4/12 sm:w-6/12 w-[90%] py-2 px-3 rounded-md  outline-none"
+          className="text-gray-900 bg-gray-100 lg:w-3/12 md:w-4/12 sm:w-6/12 w-[90%] py-2 px-3 rounded-md  outline-none"
         >
           <option value="all-blog">All Blogs</option>
           {categories.map((category, idx) => (

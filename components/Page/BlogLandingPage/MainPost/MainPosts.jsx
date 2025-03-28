@@ -96,7 +96,7 @@ const MainPosts = () => {
 
                   <section>
                     <Link
-                      href={`/post/${post.slug}`}
+                      href={`/blog/${post.slug}`}
                       className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
                     >
                       Read More
