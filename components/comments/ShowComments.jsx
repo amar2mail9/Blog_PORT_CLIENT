@@ -9,7 +9,6 @@ const ShowComments = () => {
 
   return (
     <div>
-      return (
       <div className="p-6 bg-white shadow-lg rounded-lg w-full  mt-4 mx-auto ">
         {/* Title & Count */}
         <div className="flex gap-3 items-center mb-4">
