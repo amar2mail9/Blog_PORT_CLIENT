@@ -4,22 +4,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { FaLightbulb, FaRocket, FaCode } from "react-icons/fa"; // Import icons
+import { FaLightbulb, FaRocket, FaCode } from "react-icons/fa";
 import ContactUs from "./ContactUs";
 
 export default function AboutUs() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-200 py-16 px-6">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 py-16 px-6">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="text-center mb-12"
       >
-        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-pink-700 mb-4">
           About Polytechub
         </h1>
-        <p className="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+        <p className="mt-4 text-lg md:text-xl text-pink-800 max-w-2xl mx-auto">
           Your hub for insightful tech blogs, comprehensive tutorials, and
           inspiring portfolio showcases. We're passionate about empowering
           developers and tech enthusiasts.
@@ -41,7 +41,7 @@ export default function AboutUs() {
         >
           <SwiperSlide>
             <div className="p-8 md:p-12 bg-white rounded-3xl flex flex-col items-center shadow-lg transition-all hover:scale-105">
-              <FaLightbulb className="text-4xl md:text-6xl text-blue-500 mb-6" />
+              <FaLightbulb className="text-4xl md:text-6xl text-pink-500 mb-6" />
               <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">
                 Our Mission
               </h2>
@@ -54,7 +54,7 @@ export default function AboutUs() {
 
           <SwiperSlide>
             <div className="p-8 md:p-12 bg-white rounded-3xl flex flex-col items-center shadow-lg transition-all hover:scale-105">
-              <FaRocket className="text-4xl md:text-6xl text-green-500 mb-6" />
+              <FaRocket className="text-4xl md:text-6xl text-pink-500 mb-6" />
               <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">
                 Our Vision
               </h2>
@@ -67,7 +67,7 @@ export default function AboutUs() {
 
           <SwiperSlide>
             <div className="p-8 md:p-12 bg-white rounded-3xl flex flex-col items-center shadow-lg transition-all hover:scale-105">
-              <FaCode className="text-4xl md:text-6xl text-purple-500 mb-6" />
+              <FaCode className="text-4xl md:text-6xl text-pink-500 mb-6" />
               <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-gray-800">
                 What We Offer
               </h2>

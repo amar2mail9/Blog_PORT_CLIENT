@@ -1,9 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaBrush, FaDatabase } from "react-icons/fa"; // Importing some example icons
+import { FaLaptopCode, FaBrush, FaDatabase } from "react-icons/fa";
 import FeaturedWork from "../Home/FeaturedWork";
-import WebIcon from "@mui/icons-material/Web";
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 
 const Works = () => {
@@ -35,47 +34,44 @@ const Works = () => {
   ];
 
   return (
-    <section className="w-full py-12 bg-gray-50">
-      <h2 className="text-center text-3xl font-bold text-gray-800 mb-12">
+    <section className="w-full py-12 bg-pink-50">
+      <h2 className="text-center text-4xl font-bold text-pink-600 mb-12">
         My Works
       </h2>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-12 px-10">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10 px-10">
         {works.map((work, index) => (
           <motion.div
-            className="flex flex-col items-center text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
               duration: 0.8,
               ease: "easeOut",
-              delay: index * 0.2, // Stagger animation delay for each work
+              delay: index * 0.2,
             }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             key={index}
           >
-            <Card className="p-6 bg-white">
-              <CardActionArea>
-                <CardContent className="flex items-center justify-center flex-col">
+            <Card className="bg-white hover:bg-pink-200 hover:text-white ease-in-out duration-300 transition-all shadow-lg rounded-2xl border border-pink-100">
+              <CardActionArea className="p-6">
+                <CardContent className="flex flex-col items-center justify-center space-y-4">
                   <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="p"
-                    className="!text-pink-600 !text-4xl !text-center"
+                    variant="h4"
+                    component="div"
+                    className="text-5xl text-pink-500 group-hover:text-white"
                   >
                     {work.icon}
                   </Typography>
-
                   <Typography
-                    variant="body1"
-                    className="!text-center !font-semibold !text-xl !text-gray-700"
+                    variant="h6"
+                    component="h3"
+                    className="font-bold text-xl text-pink-600 group-hover:text-white"
                   >
                     {work.title}
                   </Typography>
                   <Typography
                     variant="body2"
-                    sx={{ color: "text.secondary" }}
-                    className="text-center"
+                    className="text-center text-gray-600 group-hover:text-white"
                   >
                     {work.description}
                   </Typography>
@@ -85,8 +81,9 @@ const Works = () => {
           </motion.div>
         ))}
       </div>
-      <div className="mt-8"></div>
-      <FeaturedWork />
+      <div className="mt-12">
+        <FeaturedWork />
+      </div>
     </section>
   );
 };

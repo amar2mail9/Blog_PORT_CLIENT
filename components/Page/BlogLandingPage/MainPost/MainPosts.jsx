@@ -80,14 +80,14 @@ const MainPosts = () => {
                     <img
                       src={post.featuredImage}
                       alt={post.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-300 transform hover:scale-105"
+                      className="w-full h-full object-cover  object-center transition-transform duration-300 transform hover:scale-105"
                     />
                   </div>{" "}
                 </Link>
 
                 {/* Content Section */}
                 <section className="p-4">
-                  <h2 className="text-xl font-semibold mb-2 line-clamp-2">
+                  <h2 className="text-xl text-pink-600 font-semibold mb-2 line-clamp-2">
                     {post.title}
                   </h2>
                   <p className="text-gray-600 text-sm mb-4 line-clamp-3">
@@ -128,14 +128,16 @@ const MainPosts = () => {
         </div>
 
         <div className="flex justify-center mt-7">
-          <Button
-            onClick={() => {
-              setCount((prev) => prev + 6);
-            }}
-            className="!bg-pink-600 !text-white hover:!bg-pink-700 duration-300"
-          >
-            View More
-          </Button>
+         {
+          blogData.length <= count ? null :  <Button
+          onClick={() => {
+            setCount((prev) => prev + 6);
+          }}
+          className="!bg-pink-600 !text-white hover:!bg-pink-700 duration-300"
+        >
+          View More
+        </Button>
+         }
         </div>
       </div>
 
