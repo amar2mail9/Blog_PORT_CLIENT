@@ -28,11 +28,11 @@ const IntroPage = () => {
             </p>
 
             <div className="flex md:justify-start justify-center mt-4">
-              <a href={"./myresume.pdf"} download>
+              <Link href={"./myresume.pdf"} download={true}>
                 <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-pink-500 text-white flex items-center  gap-3">
                   Download Resume <FaDownload />
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
