@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import { FaDownload } from "react-icons/fa";
+import Link from "next/link";
 
 const IntroPage = () => {
   return (
@@ -27,7 +28,7 @@ const IntroPage = () => {
             </p>
 
             <div className="flex md:justify-start justify-center mt-4">
-              <a href={"/Resume.pdf"} download>
+              <a href={"./myresume.pdf"} download>
                 <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-pink-500 text-white flex items-center  gap-3">
                   Download Resume <FaDownload />
                 </button>
