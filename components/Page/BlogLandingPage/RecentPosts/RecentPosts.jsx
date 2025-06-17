@@ -1,5 +1,6 @@
+"use client";
 import { blogData } from "@/context/BlogData";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FcCalendar } from "react-icons/fc";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,7 +17,23 @@ import { Autoplay } from "swiper/modules";
 import { categories } from "@/context/Category";
 import Link from "next/link";
 import { agoTime } from "@/context/TimeFormate";
+import Spinner from "@/components/Spinner";
 const RecentPosts = () => {
+  const [blogData, setBlogData] = useState([]);
+
+  const fetchBlogData = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+      const data = await res.json();
+      setBlogData(data.data); // ← Make sure the structure matches your API response
+    } catch (error) {
+      console.error("Failed to fetch blog data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogData(); // ← Call on mount
+  }, []);
   return (
     <div className="md:grid md:grid-cols-12 grid-cols-1 flex flex-col  gap-8 w-full h-[80vh bg-red-800] items-start">
       <div className="lg:col-span-9 md:col-span-7 flex flex-col gap-8  ">
@@ -41,56 +58,63 @@ const RecentPosts = () => {
               modules={[Autoplay]}
               className="mySwiper w-full h-full rounded-lg "
             >
-              {blogData.slice(0, 3).map((post, idx) => {
-                return (
-                  <SwiperSlide
-                    key={idx}
-                    className="w-full h-full overflow-hidden my-swiper-slide "
-                  >
-                    <Link href={`/blog/${post.slug}`}>
-                      <div className="relative w-full h-full">
-                        <img
-                          src={post.featuredImage}
-                          alt={post.title}
-                          className="w-full h-full hover:scale-110 transition-all ease-in-out duration-1000  brightness-50 object-cover object-center absolute top-0 "
-                        />
-                        <div className="w-full h-full z-10 text-white absolute">
-                          <div className="relative w-full h-full">
-                            <div className="absolute bottom-10 p-8 flex flex-col">
-                              <span className="flex items-center gap-3">
-                                <Button
-                                  variant="contained"
-                                  className="!bg-pink-600 !py-1 !text-sm !px-4"
-                                >
-                                  {post.category.length > 14
-                                    ? `${post.category.slice(0, 14)}...`
-                                    : post.category}
-                                </Button>
-                                <span className="flex items-center">
-                                  <FcCalendar className="w-6 h-6 p-1" />
-                                  <span className="text-xs text-gray-300">
-                                    {agoTime(post.publishedAt)}
+              {blogData.length === 0 ? (
+                <Spinner />
+              ) : (
+                blogData.slice(0, 3).map((post, idx) => {
+                  return (
+                    <SwiperSlide
+                      key={idx}
+                      className="w-full h-full overflow-hidden my-swiper-slide "
+                    >
+                      <Link href={`/blog/${post.slug}`}>
+                        <div className="relative w-full h-full">
+                          <img
+                            src={post.thumbnail}
+                            alt={post.title}
+                            className="w-full h-full hover:scale-110 transition-all ease-in-out duration-1000  brightness-50 object-cover object-center absolute top-0 "
+                          />
+                          <div className="w-full h-full z-10 text-white absolute">
+                            <div className="relative w-full h-full">
+                              <div className="absolute bottom-10 p-8 flex flex-col">
+                                <span className="flex items-center gap-3">
+                                  <Button
+                                    variant="contained"
+                                    className="!bg-pink-600 !py-1 !text-sm !px-4"
+                                  >
+                                    {post.category.categoryName.length > 14
+                                      ? `${post.category.categoryName.slice(
+                                          0,
+                                          14
+                                        )}...`
+                                      : post.category.categoryName}
+                                  </Button>
+                                  <span className="flex items-center">
+                                    <FcCalendar className="w-6 h-6 p-1" />
+                                    <span className="text-xs text-gray-300">
+                                      {agoTime(post.createdAt)}
+                                    </span>
                                   </span>
                                 </span>
-                              </span>
-                              <motion.div
-                                initial={{ opacity: 0, y: 100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 2 }}
-                                viewport={{ once: false }}
-                              >
-                                <h1 className="text-2xl line-clamp-2">
-                                  {post.title}
-                                </h1>
-                              </motion.div>
+                                <motion.div
+                                  initial={{ opacity: 0, y: 100 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.5, duration: 2 }}
+                                  viewport={{ once: false }}
+                                >
+                                  <h1 className="text-xl line-clamp-2">
+                                    {post.title}
+                                  </h1>
+                                </motion.div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  </SwiperSlide>
-                );
-              })}
+                      </Link>
+                    </SwiperSlide>
+                  );
+                })
+              )}
             </Swiper>
           </div>
 
@@ -118,7 +142,7 @@ const RecentPosts = () => {
                       <div className="flex gap-4 p shadow-hover hover:text-pink-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
                         <div className="w-[35%] rounded-lg overflow-hidden">
                           <img
-                            src={blog.featuredImage}
+                            src={blog.thumbnail}
                             alt={blog.title}
                             className="rounded-lg w-full h-[100px] hover:scale-110 transition-all duration-1000 ease-in-out hover:brightness-50 cursor-pointer object-cover object-center "
                           />
@@ -126,15 +150,18 @@ const RecentPosts = () => {
                         <div className="w-[65%] flex flex-col gap-2">
                           <div className="flex gap-2 ">
                             <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
-                              {blog.category.length > 14
-                                ? `${blog.category.slice(0, 14)}...`
-                                : blog.category}
+                              {blog.category.categoryName.length > 14
+                                ? `${blog.category.categoryName.slice(
+                                    0,
+                                    14
+                                  )}...`
+                                : blog.category.categoryName}
                             </button>
 
                             <span className="flex items-center">
                               <FcCalendar className="w-6 h-6 p-1" />
                               <span className="text-xs text-gray-500">
-                                {agoTime(blog.publishedAt)}
+                                {agoTime(blog.createdAt)}
                               </span>
                             </span>
                           </div>

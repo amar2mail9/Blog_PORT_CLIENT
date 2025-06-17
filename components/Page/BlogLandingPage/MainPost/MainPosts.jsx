@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LatestPost from "./LatestPost";
 import { motion } from "framer-motion";
-import { blogData } from "@/context/BlogData";
+// import { blogData } from "@/context/BlogData";
 
 import { Button } from "@mui/material";
 
@@ -12,10 +12,24 @@ import { Favorite, Visibility } from "@mui/icons-material";
 import { extractDate } from "@/context/TimeFormate";
 import CommentIcon from "@mui/icons-material/Comment";
 import { VCFormatter } from "@/context/ViewAndCommentsForamter";
+import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
 
 const MainPosts = () => {
   const [count, setCount] = useState(6);
+  const [blogData, setBlogData] = useState([]);
 
+  const fetchBlog = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+      const data = await res.json();
+      console.log(data);
+
+      setBlogData(data.data);
+    } catch (error) {
+      toast.error(`${error.error}`);
+    }
+  };
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -33,6 +47,10 @@ const MainPosts = () => {
     },
     tap: { scale: 0.95 },
   };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
   return (
     <section className="flex md:flex lg:flex-row flex-col gap-6 justify-between lg:px-[5%] md:px-[8%] sm:px-[5%] p-5 bg-slate-400/20">
       <div className="lg:w-[75%] w-full">
@@ -42,102 +60,106 @@ const MainPosts = () => {
           </h1>
           <div className="h-1 w-full bg-pink-500 rounded-md my-1"></div>
         </div>
-        <div className="w-full gap-8 grid lg:grid-cols-3 md:grid-cols-2">
-          {blogData.slice(0, count).map((post, idx) => {
-            return (
-              <motion.div
-                key={idx}
-                variants={cardVariants}
-                initial="hidden"
-                animate="visible"
-                whileHover="hover"
-                whileTap="tap"
-                className="bg-white rounded-lg shadow-md overflow-hidden my-swiper-slide"
-              >
-                {/* Top Section */}
-                <section className="flex items-center justify-between px-4 py-3">
-                  <div className="flex items-center gap-3">
-                    <span className="w-10 h-10 text-gray-500">
-                      <FaUserCircle className="w-full h-full" />
-                    </span>
-                    <div className="flex flex-col">
-                      <h6 className="text-sm font-semibold text-gray-700">
-                        {post.author.name}
-                      </h6>
-                      <p className="text-xs text-gray-500">
-                        {extractDate(post.publishedAt)}
-                      </p>
+        {blogData.length === 0 ? (
+          <Spinner />
+        ) : (
+          <div className="w-full gap-8 grid lg:grid-cols-3 md:grid-cols-2">
+            {blogData?.map((post, idx) => {
+              return (
+                <motion.div
+                  key={idx}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  whileTap="tap"
+                  className="bg-white rounded-lg shadow-md overflow-hidden my-swiper-slide"
+                >
+                  {/* Top Section */}
+                  <section className="flex items-center justify-between px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <span className="w-10 h-10 text-gray-500">
+                        <FaUserCircle className="w-full h-full" />
+                      </span>
+                      <div className="flex flex-col">
+                        <h6 className="text-sm font-semibold text-gray-700">
+                          {post?.author?.fullname || "Unknown"}
+                        </h6>
+                        <p className="text-xs text-gray-500">
+                          {extractDate(post.createdAt)}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  <span className="bg-pink-50 border line-clamp-1 border-pink-500 text-pink-500 rounded-md px-4 py-1">
-                    {post.category}
-                  </span>
-                </section>
-
-                <Link href={`/blog/${post.slug}`}>
-                  {/* Image Section */}
-                  <div className="w-full h-48 overflow-hidden">
-                    <img
-                      src={post.featuredImage}
-                      alt={post.title}
-                      className="w-full h-full object-cover  object-center transition-transform duration-300 transform hover:scale-105"
-                    />
-                  </div>{" "}
-                </Link>
-
-                {/* Content Section */}
-                <section className="p-4">
-                  <h2 className="text-xl text-pink-600 font-semibold mb-2 line-clamp-2">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                    {post.expertContent}
-                  </p>
-
-                  <section>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
-                    >
-                      Read More
-                    </Link>
+                    <span className="bg-pink-50 border line-clamp-1 border-pink-500 text-pink-500 rounded-md px-4 py-1">
+                      {post.category.categoryName}
+                    </span>
                   </section>
 
-                  {/* Icons Section */}
-                  <section className=" mt-2  flex items-center justify-between text-sm text-gray-500">
-                    {/* View and Comments */}
-                    <section className="flex gap-4 items-center">
-                      <span className="flex items-center gap-1">
-                        <Visibility className="text-green-500" />
-                        {VCFormatter(post.views)}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <CommentIcon className="text-pink-600" />
-                        {VCFormatter(post.comments.length)}
-                      </span>
-                    </section>
+                  <Link href={`/blog/${post?.slug}`}>
+                    {/* Image Section */}
+                    <div className="w-full h-48 overflow-hidden">
+                      <img
+                        src={post?.thumbnail}
+                        alt={post?.title}
+                        className="w-full h-full object-cover  object-center transition-transform duration-300 transform hover:scale-105"
+                      />
+                    </div>{" "}
+                  </Link>
+
+                  {/* Content Section */}
+                  <section className="p-4">
+                    <h2 className="text-xl text-pink-600 font-semibold mb-2 line-clamp-2">
+                      {post?.title}
+                    </h2>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      {post.expert}
+                    </p>
 
                     <section>
-                      <Favorite className="text-red-500 cursor-pointer hover:text-red-600 transition-colors duration-200" />
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
+                      >
+                        Read More
+                      </Link>
+                    </section>
+
+                    {/* Icons Section */}
+                    <section className=" mt-2  flex items-center justify-between text-sm text-gray-500">
+                      {/* View and Comments */}
+                      <section className="flex gap-4 items-center">
+                        <span className="flex items-center gap-1">
+                          <Visibility className="text-green-500" />
+                          {VCFormatter(post?.views || 10000)}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <CommentIcon className="text-pink-600" />
+                          {VCFormatter(post?.comments?.length || 0)}
+                        </span>
+                      </section>
+
+                      <section>
+                        <Favorite className="text-red-500 cursor-pointer hover:text-red-600 transition-colors duration-200" />
+                      </section>
                     </section>
                   </section>
-                </section>
-              </motion.div>
-            );
-          })}
-        </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
 
         <div className="flex justify-center mt-7">
-         {
-          blogData.length <= count ? null :  <Button
-          onClick={() => {
-            setCount((prev) => prev + 6);
-          }}
-          className="!bg-pink-600 !text-white hover:!bg-pink-700 duration-300"
-        >
-          View More
-        </Button>
-         }
+          {blogData.length <= count ? null : (
+            <Button
+              onClick={() => {
+                setCount((prev) => prev + 6);
+              }}
+              className="!bg-pink-600 !text-white hover:!bg-pink-700 duration-300"
+            >
+              View More
+            </Button>
+          )}
         </div>
       </div>
 
