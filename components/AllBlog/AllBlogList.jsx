@@ -17,7 +17,7 @@ import { useRef } from "react";
 const extractDate = (date) => new Date(date).toLocaleDateString();
 
 const AllBlogList = () => {
-  const [blogData, setBlogData] = useState([]);
+  // const [blogData, setBlogData] = useState([]);
 
   return (
     <main className="px-[10%] bg-gray-50 text-gray-800 py-6">
