@@ -15,7 +15,7 @@ const TopSection = () => {
         >
           <option value="all-blog">All Blogs</option>
           {categories.map((category, idx) => (
-            <option value={category.categoryName}>
+            <option key={idx} value={category.categoryName}>
               {category.categoryName}
             </option>
           ))}

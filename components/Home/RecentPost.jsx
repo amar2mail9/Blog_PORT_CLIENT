@@ -48,7 +48,7 @@ const RecentPost = () => {
     <section className="w-full py-12 bg-gray-100 lg:px-[10%] md:px-[7%] sm:px-[5%] px-4">
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3 w-[70%] ">
-          <h2 className="md:text-3xl text-xl  font-semibold text-gray-800">
+          <h2 className="md:text-2xl text-xl  font-semibold text-gray-800">
             Recent Posts
           </h2>
           <div className="w-3/12 h-1 bg-pink-500 rounded-full"></div>
@@ -64,7 +64,7 @@ const RecentPost = () => {
         {latestPost.length === 0 ? (
           <Spinner />
         ) : (
-          latestPost.reverse().map((post, idx) => (
+          latestPost.slice(0, 4).map((post, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}

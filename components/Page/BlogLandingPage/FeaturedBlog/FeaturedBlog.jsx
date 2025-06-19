@@ -73,18 +73,18 @@ const FeaturedBlog = () => {
               <div className="lg:w-[200px] w-[100px] h-[3px] bg-red-500"></div>
             </div>
             <div className="mt-4 w-full">
-              <Swiper
-                centeredSlides={true}
-                loop={true}
-                autoplay={{ delay: 3000, disableOnInteraction: false }}
-                speed={2000}
-                modules={[Autoplay]}
-                className="mySwiper w-full h-full rounded-lg bg-white shadow-hover"
-              >
-                {blogData.length === 0 ? (
-                  <Spinner />
-                ) : (
-                  blogData.map((post, idex) => (
+              {blogData.length === 0 ? (
+                <Spinner />
+              ) : (
+                <Swiper
+                  centeredSlides={true}
+                  loop={true}
+                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  speed={2000}
+                  modules={[Autoplay]}
+                  className="mySwiper w-full h-full rounded-lg bg-white shadow-hover"
+                >
+                  {blogData.map((post, idex) => (
                     <SwiperSlide key={idex} className="w-full h-full">
                       <Link href={`/blog/${post.slug}`}>
                         <div className="w-full md:h-[300px] h-[220px]">
@@ -110,9 +110,9 @@ const FeaturedBlog = () => {
                         </div>
                       </Link>
                     </SwiperSlide>
-                  ))
-                )}
-              </Swiper>
+                  ))}
+                </Swiper>
+              )}
             </div>
           </div>
           <div className="w-full md:w-[55%] lg:w-[70%] h-[600px] p-2 lg:flex flex-col">
