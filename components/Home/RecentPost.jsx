@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
 import { blogData } from "@/context/BlogData";
@@ -9,8 +9,23 @@ import { extractDate } from "@/context/TimeFormate";
 import { FaUserCircle } from "react-icons/fa";
 import { Favorite, Visibility } from "@mui/icons-material";
 import { VCFormatter } from "@/context/ViewAndCommentsForamter";
+import Spinner from "../Spinner";
 
 const RecentPost = () => {
+  const [latestPost, setLatestPost] = useState([]);
+
+  const fetchBlog = async () => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+      const data = await res.json();
+      setLatestPost(data.data);
+    } catch (error) {
+      console.log("Featured", error.error);
+    }
+  };
+  useEffect(() => {
+    fetchBlog();
+  }, []);
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -46,10 +61,10 @@ const RecentPost = () => {
       </div>
 
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {blogData
-          .slice(-4)
-          .reverse()
-          .map((post, idx) => (
+        {latestPost.length === 0 ? (
+          <Spinner />
+        ) : (
+          latestPost.reverse().map((post, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
@@ -66,11 +81,11 @@ const RecentPost = () => {
                     <FaUserCircle className="w-full h-full" />
                   </span>
                   <div className="flex flex-col">
-                    <h6 className="text-sm font-semibold text-gray-700">
-                      {post.author.name}
+                    <h6 className="text-xs font-semibold text-gray-700">
+                      {post.author.fullname}
                     </h6>
-                    <p className="text-xs text-gray-500">
-                      {extractDate(post.publishedAt)}
+                    <p className="text-[9px] text-gray-500">
+                      {extractDate(post?.createdAt)}
                     </p>
                   </div>
                 </div>
@@ -80,7 +95,7 @@ const RecentPost = () => {
                 {/* Image Section */}
                 <div className="w-full h-48 overflow-hidden">
                   <img
-                    src={post.featuredImage}
+                    src={post.thumbnail}
                     alt={post.title}
                     className="w-full h-full object-cover object-center transition-transform duration-300 transform hover:scale-105"
                   />
@@ -89,11 +104,11 @@ const RecentPost = () => {
 
               {/* Content Section */}
               <section className="p-4">
-                <h2 className="text-xl font-semibold mb-2 line-clamp-2">
+                <h2 className="text-md font-semibold mb-2 line-clamp-2">
                   {post.title}
                 </h2>
                 <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {post.expertContent}
+                  {post.expert}
                 </p>
 
                 <section>
@@ -115,7 +130,7 @@ const RecentPost = () => {
                     </span>
                     <span className="flex items-center gap-1">
                       <CommentIcon className="text-pink-600" />
-                      {VCFormatter(post.comments.length)}
+                      {VCFormatter(post?.comments?.length || 0)}
                     </span>
                   </section>
 
@@ -125,7 +140,8 @@ const RecentPost = () => {
                 </section>
               </section>
             </motion.div>
-          ))}
+          ))
+        )}
       </section>
     </section>
   );

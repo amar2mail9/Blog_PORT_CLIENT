@@ -11,6 +11,7 @@ import { Autoplay, Pagination, FreeMode } from "swiper/modules";
 import { CalendarMonth } from "@mui/icons-material";
 import Link from "next/link";
 import { agoTime } from "@/context/TimeFormate";
+import Spinner from "@/components/Spinner";
 
 const SwiperBlog = () => {
   const [blogData, setBlogData] = useState([]);
@@ -46,55 +47,59 @@ const SwiperBlog = () => {
         modules={[Autoplay, Pagination]}
         className="mySwiper w-[100%] md:h-[85vh] h-[50vh]"
       >
-        {blogData.slice(0, 4).map((post, idx) => (
-          <SwiperSlide key={idx} className="w-[100%] h-full">
-            <Link href={`/blog/${post.slug}`}>
-              <div className="relative w-full h-full overflow-hidden cursor-pointer my-swiper-slide">
-                <img
-                  src={post?.thumbnail}
-                  alt={post.title}
-                  className="w-full h-full object-cover zoom-image object-center brightness-50 absolute top-0 left-0 -z-10"
-                />
-                <div className="w-full h-full">
-                  <div className="w-full h-full flex items-center justify-between">
-                    <div className="lg:w-[50%] w-full h-full text-white">
-                      <div className="flex w-full h-full gap-6 lg:p-16 p-8 flex-col lg:justify-center">
-                        <div className="flex md:gap-10 gap-2 lg:items-center">
-                          <button className="!bg-pink-600 line-clamp-1 !text-white md:px-6 px-4 lg:text-lg text-xs md:text-sm py-1 rounded-md">
-                            {post.category.categoryName}
-                          </button>
-                          <span className="text-pink-200 md:text-xl text-xs">
-                            <CalendarMonth /> {agoTime(post.createdAt)}
-                          </span>
-                        </div>
-                        <div>
-                          <h1 className="md:line-clamp-2 lg:text-4xl md:text-2xl text-xl font-bold">
-                            {post.title}
-                          </h1>
-                        </div>
-                        <div className="flex items-center md:gap-8 gap-3">
-                          <img
-                            src={
-                              post?.expertAuthor?.avatar ||
-                              "https://cdn-icons-png.flaticon.com/512/9203/9203764.png"
-                            }
-                            alt=""
-                            className="w-14 h-14 rounded-full"
-                          />
-                          <span className="text-lg">
-                            <span className="text-pink-200">By:</span>{" "}
-                            {post.author.fullname}
-                          </span>
+        {blogData.length === 0 ? (
+          <Spinner />
+        ) : (
+          blogData.map((post, idx) => (
+            <SwiperSlide key={idx} className="w-[100%] h-full">
+              <Link href={`/blog/${post.slug}`}>
+                <div className="relative w-full h-full overflow-hidden cursor-pointer my-swiper-slide">
+                  <img
+                    src={post?.thumbnail}
+                    alt={post.title}
+                    className="w-full h-full object-cover zoom-image object-center brightness-50 absolute top-0 left-0 -z-10"
+                  />
+                  <div className="w-full h-full">
+                    <div className="w-full h-full flex items-center justify-between">
+                      <div className="lg:w-[50%] w-full h-full text-white">
+                        <div className="flex w-full h-full gap-6 lg:p-16 p-8 flex-col lg:justify-center">
+                          <div className="flex md:gap-10 gap-2 lg:items-center">
+                            <button className="!bg-pink-600 line-clamp-1 !text-white md:px-6 px-4 lg:text-lg text-xs md:text-sm py-1 rounded-md">
+                              {post.category.categoryName}
+                            </button>
+                            <span className="text-pink-200 md:text-xl text-xs">
+                              <CalendarMonth /> {agoTime(post.createdAt)}
+                            </span>
+                          </div>
+                          <div>
+                            <h1 className="md:line-clamp-2 lg:text-4xl md:text-2xl text-xl font-bold">
+                              {post.title}
+                            </h1>
+                          </div>
+                          <div className="flex items-center md:gap-8 gap-3">
+                            <img
+                              src={
+                                post?.expertAuthor?.avatar ||
+                                "https://cdn-icons-png.flaticon.com/512/9203/9203764.png"
+                              }
+                              alt=""
+                              className="w-14 h-14 rounded-full"
+                            />
+                            <span className="text-lg">
+                              <span className="text-pink-200">By:</span>{" "}
+                              {post.author.fullname}
+                            </span>
+                          </div>
                         </div>
                       </div>
+                      <div className="lg:w-[50%] lg:block hidden h-full"></div>
                     </div>
-                    <div className="lg:w-[50%] lg:block hidden h-full"></div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </SwiperSlide>
-        ))}
+              </Link>
+            </SwiperSlide>
+          ))
+        )}
       </Swiper>
 
       {/* Bottom Slider */}
