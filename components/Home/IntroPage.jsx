@@ -58,7 +58,7 @@ const IntroPage = () => {
             <div className="flex md:justify-start justify-center mt-4">
               <Link
                 href={"./myresume.pdf"}
-                // download={true}
+                download={true}
                 target="_blank"
                 rel="noopener noreferrer"
               >
