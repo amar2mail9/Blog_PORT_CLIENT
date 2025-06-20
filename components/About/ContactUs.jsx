@@ -10,13 +10,13 @@ import {
   createTheme,
   ThemeProvider,
 } from "@mui/material";
-import { pink } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 
-// Create a custom pink theme
+// Create a custom blue theme
 const theme = createTheme({
   palette: {
     primary: {
-      main: pink[500],
+      main: blue[500],
     },
   },
 });
@@ -40,7 +40,7 @@ export default function ContactUs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 to-pink-100 py-16 px-6">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-16 px-6">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -146,19 +146,19 @@ export default function ContactUs() {
               Contact Information
             </Typography>
             <Box mb={2} display="flex" alignItems="center">
-              <FaEnvelope className="text-pink-500 mr-4" />
+              <FaEnvelope className="text-blue-500 mr-4" />
               <Typography variant="body1" color="textSecondary">
                 contact@polytechub.com
               </Typography>
             </Box>
             <Box mb={2} display="flex" alignItems="center">
-              <FaPhone className="text-pink-500 mr-4" />
+              <FaPhone className="text-blue-500 mr-4" />
               <Typography variant="body1" color="textSecondary">
                 +1 (555) 123-4567
               </Typography>
             </Box>
             <Box display="flex" alignItems="center">
-              <FaMapMarkerAlt className="text-pink-500 mr-4" />
+              <FaMapMarkerAlt className="text-blue-500 mr-4" />
               <Typography variant="body1" color="textSecondary">
                 123 Tech Street, Innovation City
               </Typography>

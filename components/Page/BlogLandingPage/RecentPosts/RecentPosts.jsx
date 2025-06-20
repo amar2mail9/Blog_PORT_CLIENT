@@ -1,5 +1,5 @@
 "use client";
-import { blogData } from "@/context/BlogData";
+
 import React, { useEffect, useState } from "react";
 import { FcCalendar } from "react-icons/fc";
 
@@ -14,7 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/free-mode";
 
 import { Autoplay } from "swiper/modules";
-// import { categories } from "@/context/Category";
+
 import Link from "next/link";
 import { agoTime } from "@/context/TimeFormate";
 import Spinner from "@/components/Spinner";
@@ -27,7 +27,7 @@ const RecentPosts = () => {
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
       const data = await res.json();
-      setBlogData(data.data); // ← Make sure the structure matches your API response
+      setBlogData(data.data); 
     } catch (error) {
       console.error("Failed to fetch blog data:", error);
     }
@@ -38,14 +38,14 @@ const RecentPosts = () => {
       const data = await res.json();
       console.log("categories", data);
 
-      setCategories(data.categories); // ← Make sure the structure matches your API response
+      setCategories(data.categories); 
     } catch (error) {
       console.error("Failed to fetch blog data:", error);
     }
   };
 
   useEffect(() => {
-    fetchBlogData(); // ← Call on mount
+    fetchBlogData(); 
     fetchCategories();
   }, []);
   return (
@@ -55,7 +55,7 @@ const RecentPosts = () => {
           <h2 className="md:text-3xl sm:text-xl text-lg font-semibold text-gray-700">
             Recent Post
           </h2>
-          <div className="md:w-[300px] sm:w-[200px] w-[100px]    h-[4px] bg-rose-500 rounded-full"></div>
+          <div className="md:w-[300px] sm:w-[200px] w-[100px]    h-[4px] bg-indigo-500 rounded-full"></div>
         </div>
 
         <div className="w-full  lg:flex  gap-4  ">
@@ -97,7 +97,7 @@ const RecentPosts = () => {
                                   <span className="flex items-center gap-3">
                                     <Button
                                       variant="contained"
-                                      className="!bg-pink-600 !py-1 !text-sm !px-4"
+                                      className="!bg-blue-600 !py-1 !text-sm !px-4"
                                     >
                                       {post.category.categoryName.length > 14
                                         ? `${post.category.categoryName.slice(
@@ -159,7 +159,7 @@ const RecentPosts = () => {
                   return (
                     <SwiperSlide key={idx}>
                       <Link href={`/blog/${blog.slug}`}>
-                        <div className="flex gap-4 p shadow-hover hover:text-pink-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
+                        <div className="flex gap-4 p shadow-hover hover:text-blue-500 hover:rounded-lg transition-all ease-in-out duration-500 p-1">
                           <div className="w-[35%] rounded-lg overflow-hidden">
                             <img
                               src={blog.thumbnail}
@@ -169,7 +169,7 @@ const RecentPosts = () => {
                           </div>
                           <div className="w-[65%] flex flex-col gap-2">
                             <div className="flex gap-2 ">
-                              <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
+                              <button className="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded-md hover:bg-blue-500 hover:text-white duration-1000 ease-in-out transition-all">
                                 {blog.category.categoryName.length > 14
                                   ? `${blog.category.categoryName.slice(
                                       0,
@@ -203,10 +203,10 @@ const RecentPosts = () => {
       </div>
       <div className="md:col-span-2  flex flex-col gap-8 w-full">
         <div className="flex items-start flex-col w-full">
-          <span className="py-2 px-4 rounded-sm bg-rose-100 text-rose-600 font-[500]">
+          <span className="py-2 px-4 rounded-sm bg-indigo-100 text-indigo-600 font-[500]">
             Categories
           </span>
-          <div className="w-full h-[2px] bg-rose-100"></div>
+          <div className="w-full h-[2px] bg-indigo-100"></div>
         </div>
         {categories.length === 0 ? (
           <Spinner message="Categories..." />

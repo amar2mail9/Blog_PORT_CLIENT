@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
-import { blogData } from "@/context/BlogData";
+
 import CommentIcon from "@mui/icons-material/Comment";
 import Link from "next/link";
 import { extractDate } from "@/context/TimeFormate";
@@ -20,7 +20,7 @@ const RecentPost = () => {
       const data = await res.json();
       setLatestPost(data.data);
     } catch (error) {
-      console.log("Featured", error.error);
+      console.log("Featuindigo", error.error);
     }
   };
   useEffect(() => {
@@ -51,7 +51,7 @@ const RecentPost = () => {
           <h2 className="md:text-2xl text-xl  font-semibold text-gray-800">
             Recent Posts
           </h2>
-          <div className="w-3/12 h-1 bg-pink-500 rounded-full"></div>
+          <div className="w-3/12 h-1 bg-blue-500 rounded-full"></div>
         </div>
         <Link href={`/all-blogs`} className="w-[30%] flex justify-end">
           <Button variant="outlined" color="primary">
@@ -114,7 +114,7 @@ const RecentPost = () => {
                 <section>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="inline-block bg-pink-50 text-rose-600 px-4 py-2 rounded-md text-sm hover:bg-pink-100 transition-colors duration-200"
+                    className="inline-block bg-blue-50 text-indigo-800 px-4 py-2 rounded-md text-sm hover:bg-blue-100 transition-colors duration-200"
                   >
                     Read More
                   </Link>
@@ -129,13 +129,13 @@ const RecentPost = () => {
                       {VCFormatter(post.views)}
                     </span>
                     <span className="flex items-center gap-1">
-                      <CommentIcon className="text-pink-600" />
+                      <CommentIcon className="text-blue-600" />
                       {VCFormatter(post?.comments?.length || 0)}
                     </span>
                   </section>
 
                   <section>
-                    <Favorite className="text-red-500 cursor-pointer hover:text-red-600 transition-colors duration-200" />
+                    <Favorite className="text-indigo-500 cursor-pointer hover:text-indigo-600 transition-colors duration-200" />
                   </section>
                 </section>
               </section>

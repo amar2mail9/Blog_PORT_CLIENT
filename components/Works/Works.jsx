@@ -8,38 +8,38 @@ import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
 const Works = () => {
   const works = [
     {
-      title: "Web Development",
+      title: "Blog Website",
       icon: <FaLaptopCode />,
       description:
-        "Building responsive and high-performance websites using modern technologies.",
+        "A fully functional blog platform built with modern tech stack.",
     },
     {
-      title: "Blog Web Development",
+      title: "Flipkart Landing Page",
       icon: <FaLaptopCode />,
       description:
-        "Creating mobile apps with an excellent user experience for both iOS and Android.",
+        "A clone landing page inspired by Flipkart, built with responsiveness in mind.",
     },
     {
-      title: "UI/UX Design",
-      icon: <FaBrush />,
+      title: "Portfolio and Blog Website (MERN Stack)",
+      icon: <FaLaptopCode />,
       description:
-        "Designing intuitive user interfaces and engaging user experiences with attention to detail.",
+        "Combining creativity with full-stack technology to showcase projects and blogs.",
     },
     {
-      title: "Database Management",
-      icon: <FaDatabase />,
+      title: "E-Commerce",
+      icon: <FaLaptopCode />,
       description:
-        "Designing and managing databases that store and retrieve information efficiently and securely.",
+        "Robust database-driven e-commerce backend & frontend with secure data flow.",
     },
   ];
 
   return (
-    <section className="w-full py-12 bg-pink-50">
-      <h2 className="text-center text-4xl font-bold text-pink-600 mb-12">
+    <section className="w-full py-16 bg-gradient-to-b from-gray-100 to-blue-50">
+      <h2 className="text-center text-4xl font-extrabold text-blue-600 mb-16">
         My Works
       </h2>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-10 px-10">
+      <div className="grid gap-10 px-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {works.map((work, index) => (
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -52,26 +52,16 @@ const Works = () => {
             viewport={{ once: true }}
             key={index}
           >
-            <Card className="bg-white hover:bg-pink-200 hover:text-white ease-in-out duration-300 transition-all shadow-lg rounded-2xl border border-pink-100">
+            <Card className="bg-white hover:bg-blue-100 text-gray-800 hover:text-blue-700 transition-all duration-300 rounded-2xl shadow-md border border-gray-200">
               <CardActionArea className="p-6">
-                <CardContent className="flex flex-col items-center justify-center space-y-4">
-                  <Typography
-                    variant="h4"
-                    component="div"
-                    className="text-5xl text-pink-500 group-hover:text-white"
-                  >
-                    {work.icon}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="h3"
-                    className="font-bold text-xl text-pink-600 group-hover:text-white"
-                  >
+                <CardContent className="flex flex-col items-center justify-center space-y-5">
+                  <div className="text-5xl text-blue-500">{work.icon}</div>
+                  <Typography variant="h6" className="font-semibold text-xl">
                     {work.title}
                   </Typography>
                   <Typography
                     variant="body2"
-                    className="text-center text-gray-600 group-hover:text-white"
+                    className="text-center text-gray-600"
                   >
                     {work.description}
                   </Typography>
@@ -81,7 +71,8 @@ const Works = () => {
           </motion.div>
         ))}
       </div>
-      <div className="mt-12">
+
+      <div className="mt-16">
         <FeaturedWork />
       </div>
     </section>

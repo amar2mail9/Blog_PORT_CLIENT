@@ -1,4 +1,3 @@
-import { blogData } from "@/context/BlogData";
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -12,7 +11,6 @@ import Spinner from "@/components/Spinner";
 
 const LatestPost = () => {
   const [latestBlog, setLatestBlog] = useState([]);
-  console.log(latestBlog);
 
   const fetchBlog = async () => {
     try {
@@ -32,10 +30,10 @@ const LatestPost = () => {
   return (
     <div className="my-5 ">
       <div>
-        <h3 className="text-lg bg-pink-100/50 text-pink-600 py-2 px-6 rounded-t-lg w-fit">
+        <h3 className="text-lg bg-blue-100/50 text-blue-600 py-2 px-6 rounded-t-lg w-fit">
           Latest Post{" "}
         </h3>
-        <div className="w-full bg-pink-400 h-1 rounded-full"></div>
+        <div className="w-full bg-blue-400 h-1 rounded-full"></div>
       </div>
 
       <div className="mt-6 w-full h-[700px] bg-white p-2 rounded-md scroll-container">
@@ -63,7 +61,7 @@ const LatestPost = () => {
                         <div className="w-[70%] h-full ">
                           <div className="flex flex-col gap-3 items-start my-3">
                             <div className="flex gap-2 items-center">
-                              <button className="px-2 py-1 rounded-full text-[10px] bg-pink-100 text-pink-600 ">
+                              <button className="px-2 py-1 rounded-full text-[10px] bg-blue-100 text-blue-600 ">
                                 {post.category.categoryName.length > 12
                                   ? `${post.category.categoryName.slice(
                                       0,
@@ -73,7 +71,7 @@ const LatestPost = () => {
                               </button>
                               <span className="flex items-center">
                                 <FcCalendar className="w-6 h-6 p-1" />
-                                <span className="text-[10px] text-pink-800">
+                                <span className="text-[10px] text-blue-800">
                                   {agoTime(post.createdAt)}
                                 </span>
                               </span>

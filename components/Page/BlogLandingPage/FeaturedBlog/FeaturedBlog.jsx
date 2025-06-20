@@ -34,7 +34,7 @@ const socialIcon = [
   { icon: <FaTwitter className="w-full h-full text-blue-400" />, likes: 12000 },
   { icon: <FaYoutube className="w-full h-full text-red-600" />, likes: 20000 },
   {
-    icon: <FaInstagram className="w-full h-full text-pink-500" />,
+    icon: <FaInstagram className="w-full h-full text-blue-500" />,
     likes: 18000,
   },
   {
@@ -97,7 +97,7 @@ const FeaturedBlog = () => {
                         </div>
                         <div className="flex flex-col items-start gap-4 p-4">
                           <div className="flex items-center gap-2">
-                            <button className="bg-pink-50 text-sm rounded-md text-pink-500 md:px-6 px-3 py-1 hover:bg-pink-500 hover:text-pink-100 duration-500 ease-in-out transition-all shadow-hover line-clamp-1">
+                            <button className="bg-blue-50 text-sm rounded-md text-blue-500 md:px-6 px-3 py-1 hover:bg-blue-500 hover:text-blue-100 duration-500 ease-in-out transition-all shadow-hover line-clamp-1">
                               {post.category.categoryName}
                             </button>
                             <span className="flex items-center gap-2 text-sm text-gray-600">
@@ -153,7 +153,7 @@ const FeaturedBlog = () => {
                         />
                         <div className="absolute bottom-0 p-4">
                           <div className="flex gap-2">
-                            <button className="bg-pink-100 text-pink-500 text-xs px-2 py-1 rounded-md hover:bg-pink-500 hover:text-white duration-1000 ease-in-out transition-all">
+                            <button className="bg-blue-100 text-blue-500 text-xs px-2 py-1 rounded-md hover:bg-blue-500 hover:text-white duration-1000 ease-in-out transition-all">
                               {post.category.categoryName.length > 14
                                 ? `${post.category.categoryName.slice(
                                     0,
@@ -182,7 +182,7 @@ const FeaturedBlog = () => {
         </div>
         <div className="col-span-12 md:col-span-3 md:ml-4 lg:ml-8">
           <div className="w-full flex flex-col mb-6">
-            <span className="bg-white text-pink-600 px-3 py-2 w-fit">
+            <span className="bg-white text-blue-600 px-3 py-2 w-fit">
               Social Feed
             </span>
             <div className="w-full h-[1px] bg-white"></div>

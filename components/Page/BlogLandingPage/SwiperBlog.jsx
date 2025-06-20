@@ -65,10 +65,10 @@ const SwiperBlog = () => {
                         <div className="lg:w-[50%] w-full h-full text-white">
                           <div className="flex w-full h-full gap-6 lg:p-16 p-8 flex-col lg:justify-center">
                             <div className="flex md:gap-10 gap-2 lg:items-center">
-                              <button className="!bg-pink-600 line-clamp-1 !text-white md:px-6 px-4 lg:text-lg text-xs md:text-sm py-1 rounded-md">
+                              <button className="!bg-blue-600 line-clamp-1 !text-white md:px-6 px-4 lg:text-lg text-xs md:text-sm py-1 rounded-md">
                                 {post.category.categoryName}
                               </button>
-                              <span className="text-pink-200 md:text-xl text-xs">
+                              <span className="text-blue-200 md:text-xl text-xs">
                                 <CalendarMonth /> {agoTime(post.createdAt)}
                               </span>
                             </div>
@@ -87,7 +87,7 @@ const SwiperBlog = () => {
                                 className="w-14 h-14 rounded-full"
                               />
                               <span className="text-lg">
-                                <span className="text-pink-200">By:</span>{" "}
+                                <span className="text-blue-200">By:</span>{" "}
                                 {post.author.fullname}
                               </span>
                             </div>
@@ -137,7 +137,7 @@ const SwiperBlog = () => {
                         />
                       </div>
                       <div className="w-full px-4">
-                        <span className="text-pink-500 text-sm flex items-center gap-1">
+                        <span className="text-blue-500 text-sm flex items-center gap-1">
                           <CalendarMonth /> {agoTime(post.createdAt)}
                         </span>
                         <h2 className="text-[16px] text-gray-900 font-semibold">

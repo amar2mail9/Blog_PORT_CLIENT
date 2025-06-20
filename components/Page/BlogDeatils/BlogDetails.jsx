@@ -12,8 +12,6 @@ import { useEffect, useState } from "react";
 const BlogDetails = () => {
   const { slug } = useParams();
 
-  // const blog = blogData.find((b) => b.slug === slug);
-
   const [blog, setBlog] = useState(null);
 
   const fetchBlogDetails = async () => {
@@ -39,7 +37,7 @@ const BlogDetails = () => {
         <Spinner />
       ) : (
         <div style={{ padding: "20px", maxWidth: "800px", margin: "auto" }}>
-          <h1 className="text-3xl font-semibold mb-4 text-pink-500">
+          <h1 className="text-3xl font-semibold mb-4 text-blue-500">
             {blog.title}
           </h1>
           <div className="w-full h-fit rounded-lg shadow-xl  overflow-hidden ">

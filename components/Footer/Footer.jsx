@@ -20,18 +20,18 @@ const Footer = () => {
           <h3 className="font-semibold text-lg mb-4">Useful Links</h3>
           <ul className="text-sm space-y-2">
             <li>
-              <Link href="/about-us" className="hover:text-pink-500">
+              <Link href="/about-us" className="hover:text-blue-500">
                 About Me
               </Link>
             </li>
             <li>
-              <Link href="/works" className="hover:text-pink-500">
+              <Link href="/works" className="hover:text-blue-500">
                 Works
               </Link>
             </li>
 
             <li>
-              <Link href="/blogs" className="hover:text-pink-500">
+              <Link href="/blogs" className="hover:text-blue-500">
                 Blog
               </Link>
             </li>
@@ -46,7 +46,7 @@ const Footer = () => {
               href="https://github.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-pink-500"
+              className="hover:text-blue-500"
             >
               <FaGithub />
             </a>
@@ -54,7 +54,7 @@ const Footer = () => {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-pink-500"
+              className="hover:text-blue-500"
             >
               <FaLinkedin />
             </a>
@@ -62,7 +62,7 @@ const Footer = () => {
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-pink-500"
+              className="hover:text-blue-500"
             >
               <FaTwitter />
             </a>

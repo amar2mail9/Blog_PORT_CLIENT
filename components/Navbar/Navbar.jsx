@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CiSearch } from "react-icons/ci";
 import { MenuRounded } from "@mui/icons-material";
 import { Drawer, Modal } from "@mui/material";
-import { blogData } from "@/context/BlogData"; // Import blog data
+// import { blogData } from "@/context/BlogData"; // Import blog data
 
 const Navbar = () => {
   // Hooks
@@ -13,6 +13,18 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Search state
   const pathname = usePathname();
+  const [blogData, setBlogData] = useState([]);
+  const fetchBlogData = async () => {
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`);
+      const data = await response.json();
+      setBlogData(data.data);
+
+      console.log(blogData[0].title);
+    } catch (error) {
+      console.log(error.error);
+    }
+  };
 
   const menu = [
     { menuName: "home", path: "/" },
@@ -34,7 +46,9 @@ const Navbar = () => {
   const filteredBlogs = blogData.filter((blog) =>
     blog.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+  useEffect(() => {
+    fetchBlogData();
+  }, [searchTerm]);
   return (
     <>
       <nav className="w-full sticky top-0 z-50 flex items-center justify-between bg-gray-100 h-16 py-2 shadow-md lg:px-[10%] md:px-[5%] px-[1rem]">
@@ -50,12 +64,12 @@ const Navbar = () => {
           <div className="bg-gray-300 h-10 rounded-md w-[350px] flex items-center">
             <input
               type="text"
-              className="bg-transparent w-full p-2 outline-none text-pink-600 rounded-full placeholder:text-pink-400"
+              className="bg-transparent w-full p-2 outline-none text-blue-600 rounded-full placeholder:text-blue-400"
               placeholder="Search blogs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="w-9 h-9 text-pink-400 flex justify-center items-center">
+            <button className="w-9 h-9 text-blue-400 flex justify-center items-center">
               <CiSearch className="w-full h-full p-1.5" />
             </button>
           </div>
@@ -89,8 +103,8 @@ const Navbar = () => {
               <li key={idx}>
                 <Link
                   href={menuItem.path}
-                  className={`flex items-center gap-1 hover:text-pink-700 duration-300 text-gray-600 font-semibold text-[14px] ${
-                    isActive ? "text-pink-600" : ""
+                  className={`flex items-center gap-1 hover:text-blue-700 duration-300 text-gray-600 font-semibold text-[14px] ${
+                    isActive ? "text-blue-600" : ""
                   }`}
                 >
                   {menuItem.menuName.charAt(0).toUpperCase() +
@@ -106,7 +120,7 @@ const Navbar = () => {
           {/* Search Icon for Mobile */}
           <button
             onClick={handleOpen}
-            className="w-10 sm:hidden flex items-center justify-center text-pink-600 h-10 rounded-full p-2"
+            className="w-10 sm:hidden flex items-center justify-center text-blue-600 h-10 rounded-full p-2"
           >
             <CiSearch className="w-full h-full" />
           </button>
@@ -114,7 +128,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleDrawer(!open)}
-            className="w-10 md:hidden bg-pink-50 hover:bg-pink-100 duration-500 flex items-center justify-center text-pink-600 shadow-pink-200 h-10 rounded-full p-2"
+            className="w-10 md:hidden bg-blue-50 hover:bg-blue-100 duration-500 flex items-center justify-center text-blue-600 shadow-blue-200 h-10 rounded-full p-2"
           >
             <MenuRounded className="w-full h-full" />
           </button>
@@ -133,8 +147,8 @@ const Navbar = () => {
                 href={menuItem.path}
                 className={`${
                   isActive
-                    ? "bg-pink-600 text-white rounded-md"
-                    : "hover:bg-pink-50 hover:text-pink-500"
+                    ? "bg-blue-600 text-white rounded-md"
+                    : "hover:bg-blue-50 hover:text-blue-500"
                 } duration-300 py-2 px-4 w-full text-center rounded-md text-gray-300 font-semibold`}
               >
                 {menuItem.menuName.charAt(0).toUpperCase() +
@@ -148,15 +162,15 @@ const Navbar = () => {
       {/* Search Modal for Mobile */}
       <Modal open={searchOpen} onClose={handleClose} className="bg-[#0a0a0ad8]">
         <div className="w-full p-4">
-          <div className="w-full h-10 bg-gray-200 border-2 border-pink-300 rounded-md flex items-center">
+          <div className="w-full h-10 bg-gray-200 border-2 border-blue-300 rounded-md flex items-center">
             <input
               type="text"
               placeholder="Search blogs..."
-              className="w-full h-full bg-transparent p-2 outline-none rounded-full placeholder:text-pink-500"
+              className="w-full h-full bg-transparent p-2 outline-none rounded-full placeholder:text-blue-500"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="w-10 h-10 p-2 text-pink-400">
+            <button className="w-10 h-10 p-2 text-blue-400">
               <CiSearch className="w-full h-full" />
             </button>
           </div>

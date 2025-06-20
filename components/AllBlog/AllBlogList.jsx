@@ -34,7 +34,7 @@ const AllBlogList = () => {
     fetchBlog();
   }, []);
   return (
-    <main className="px-[10%] bg-gray-50 text-gray-800 py-6">
+    <main className="px-[10%] bg-slate-100 text-gray-800 py-6">
       <section className="w-full flex flex-col md:flex-row gap-6">
         {/* Left Section - Blogs */}
         <div className="w-full">
@@ -47,12 +47,12 @@ const AllBlogList = () => {
                 return (
                   <motion.div
                     key={idx}
-                    className="bg-white border my-swiper-slide  rounded-xl shadow-md transform transition duration-300 "
+                    className="bg-white border rounded-lg my-swiper-slide  hover:shadow-xl  transition-all hover:scale-105  duration-500 ease-in-out"
                   >
                     {/* Top Section */}
-                    <section className="flex items-center justify-between p-4 bg-gray-100">
+                    <section className="flex items-center rounded-t-lg justify-between p-2 bg-white">
                       <div className="flex items-center gap-3">
-                        <FaUserCircle className="text-gray-500 w-10 h-10" />
+                        <FaUserCircle className="text-gray-500 w-9 h-9" />
                         <div className="flex flex-col">
                           <h6 className="text-xs font-semibold text-gray-700">
                             {item.author.fullname}
@@ -62,7 +62,7 @@ const AllBlogList = () => {
                           </p>
                         </div>
                       </div>
-                      <span className="bg-pink-100 text-pink-600 text-[9px] font-medium px-3 py-1 rounded-lg">
+                      <span className="bg-blue-100 text-blue-600 text-[9px] font-medium px-3 py-1 rounded-lg">
                         {item.category.categoryName}
                       </span>
                     </section>
@@ -87,7 +87,7 @@ const AllBlogList = () => {
                       </p>
 
                       <Link href={`/blog/${item.slug}`}>
-                        <Button className="block text-center !capitalize !bg-pink-500 !text-white  w-full rounded-md text-[12px] hover:!bg-pink-600 ">
+                        <Button className="block text-center !capitalize !bg-blue-500 !text-white  w-full rounded-md text-[12px] hover:!bg-blue-600 ">
                           Read More
                         </Button>
                       </Link>
@@ -100,7 +100,7 @@ const AllBlogList = () => {
                             {VCFormatter(item.views || 10000)}
                           </span>
                           <span className="flex items-center gap-1">
-                            <CommentIcon className="text-pink-600" />
+                            <CommentIcon className="text-blue-600" />
                             {VCFormatter(item?.comments?.length || 0)}
                           </span>
                         </div>
