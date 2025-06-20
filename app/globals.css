@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -46,4 +46,15 @@ body {
 }
 .scroll-container::-webkit-scrollbar {
   display: none; /* Hides the scrollbar in WebKit-based browsers */
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h1 {
+  font-size: 20px;
+}
+p {
+  font-size: 0.9rem;
 }
