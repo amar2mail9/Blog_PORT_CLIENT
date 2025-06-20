@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 import { FaDownload } from "react-icons/fa";
 
-
 const IntroPage = () => {
   return (
     <section className="w-full  lg:px-[10%] md:px-[7%] sm:px-[5%] px-10 bg-white text-gray-900 flex items-center justify-center  h-[80vh]  ">
@@ -56,7 +55,12 @@ const IntroPage = () => {
             </p>
 
             <div className="flex md:justify-start justify-center mt-4">
-              <a href={"./myresume.pdf"} download={true}>
+              <a
+                href={"./myresume.pdf"}
+                download={true}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <button className="w-fit !md:text-lg !text-sm !px-8 !py-2  !rounded-lg !bg-blue-500 text-white flex items-center  gap-3">
                   Download Resume <FaDownload />
                 </button>
