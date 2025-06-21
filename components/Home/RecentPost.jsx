@@ -53,18 +53,18 @@ const RecentPost = () => {
           </h2>
           <div className="w-3/12 h-1 bg-blue-500 rounded-full"></div>
         </div>
-        <Link href={`/all-blogs`} className="w-[30%] flex justify-end">
-          <Button variant="outlined" color="primary">
+        <Link href={`/all-blogs`} className="w-[25%] flex justify-end">
+          <Button className="!bg-blue-700 !capitalize !text-white">
             View More
           </Button>
         </Link>
       </div>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {latestPost.length === 0 ? (
-          <Spinner />
-        ) : (
-          latestPost.slice(0, 4).map((post, idx) => (
+      {latestPost.length === 0 ? (
+        <Spinner />
+      ) : (
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {latestPost.slice(0, 4).map((post, idx) => (
             <motion.div
               key={idx}
               variants={cardVariants}
@@ -126,7 +126,7 @@ const RecentPost = () => {
                   <section className="flex gap-4 items-center">
                     <span className="flex items-center gap-1">
                       <Visibility className="text-green-500" />
-                      {VCFormatter(post.views)}
+                      {VCFormatter(post?.views || 10000)}
                     </span>
                     <span className="flex items-center gap-1">
                       <CommentIcon className="text-blue-600" />
@@ -140,9 +140,9 @@ const RecentPost = () => {
                 </section>
               </section>
             </motion.div>
-          ))
-        )}
-      </section>
+          ))}
+        </section>
+      )}
     </section>
   );
 };
