@@ -10,6 +10,8 @@ import {
   FaCode,
   FaUserGraduate,
   FaLaptopCode,
+  FaBriefcase,
+  FaTools,
 } from "react-icons/fa";
 import ContactUs from "./ContactUs";
 
@@ -120,10 +122,110 @@ export default function AboutUs() {
         </div>
       </motion.div>
 
-      {/* Contact Section */}
-      <div className="mt-20">
-        <ContactUs />
-      </div>
+      {/* Work Experience */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 1 }}
+        className="max-w-6xl mx-auto mt-20 px-4"
+      >
+        <div className="p-8 bg-white/60 backdrop-blur-md rounded-3xl shadow-lg">
+          <div className="text-blue-500 text-5xl mb-4">
+            <FaBriefcase />
+          </div>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800">
+            Work Experience
+          </h3>
+          <ul className="space-y-6 text-gray-700">
+            <li>
+              <strong>Customer Support Executive</strong> – NSB BPO Services
+              Pvt. Ltd., Noida (Mar 2025 – Jun 2025)
+              <ul className="list-disc ml-6 mt-1">
+                <li>
+                  Handled customer queries and provided technical support via
+                  calls and emails.
+                </li>
+                <li>
+                  Worked with internal teams to resolve issues and deliver
+                  customer satisfaction.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Teaching Assistant</strong> – Sr. Infinity School, Noida
+              (Mar 2023 – Nov 2024)
+              <ul className="list-disc ml-6 mt-1">
+                <li>
+                  Assisted in teaching Math and Computer Science to school
+                  students.
+                </li>
+                <li>
+                  Created lesson plans, digital content, and conducted
+                  interactive classroom sessions.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Video Editor</strong> – Digital Polytechnic Classes,
+              Online (Mar 2021 – Feb 2022)
+              <ul className="list-disc ml-6 mt-1">
+                <li>
+                  Edited lecture and tutorial videos for YouTube and internal
+                  learning platforms.
+                </li>
+                <li>
+                  Used Canva and other tools to enhance visuals, add
+                  transitions, and optimize for engagement.
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </motion.div>
+
+      {/* Skills Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 1 }}
+        className="max-w-6xl mx-auto mt-16 px-4"
+      >
+        <div className="p-8 bg-white/60 backdrop-blur-md rounded-3xl shadow-lg">
+          <div className="text-blue-500 text-5xl mb-4">
+            <FaTools />
+          </div>
+          <h3 className="text-2xl font-semibold mb-6 text-gray-800">Skills</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
+            <div>
+              <strong>Frontend:</strong> HTML/HTML5, CSS/CSS3, Tailwind CSS,
+              Bootstrap, Material UI, JavaScript, React.js, Next.js, Responsive
+              UI
+            </div>
+            <div>
+              <strong>Backend:</strong> Node.js, Express.js, Authentication
+            </div>
+            <div>
+              <strong>Database:</strong> MongoDB
+            </div>
+            <div>
+              <strong>Version Control:</strong> Git, GitHub
+            </div>
+            <div>
+              <strong>MS Office:</strong> PowerPoint, Word, Excel, Outlook
+            </div>
+            <div>
+              <strong>Video Editing:</strong> Canva, Adobe Photoshop, Premiere
+              Pro, Power Director
+            </div>
+            <div>
+              <strong>E-Commerce:</strong> Product Listing, Pricing,
+              Marketplaces, Storage, Multichannel Marketing
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+      <ContactUs/>
     </div>
   );
 }
